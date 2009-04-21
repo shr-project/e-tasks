@@ -1,0 +1,28 @@
+
+[Anjuta]
+Maximized=1
+Geometry=1366x718+0+25
+
+[File Loader]
+Files=file:///home/ito/workspace/tasks/src/main.c#30%%%file:///home/ito/workspace/tasks/src/gui.c#433%%%file:///home/ito/workspace/tasks/src/db_sqlite.c#198%%%file:///home/ito/workspace/tasks/src/db_sqlite.h#21%%%file:///home/ito/workspace/tasks/src/gui.h#29%%%file:///home/ito/Desktop/e17_svn/elementary/src/lib/elm_genlist.c#1175%%%file:///usr/include/bits/stdio2.h#34%%%file:///home/ito/Desktop/e17_svn/evas/src/lib/canvas/evas_object_smart.c#447%%%file:///usr/local/include/eina-0/eina/eina_inline_list.x#41%%%file:///home/ito/Desktop/e17_svn/evas/src/lib/canvas/evas_callbacks.c#145%%%file:///home/ito/Desktop/e17_svn/evas/src/lib/canvas/evas_events.c#295%%%file:///home/ito/Desktop/e17_svn/ecore/src/lib/ecore_input/ecore_input.c#180%%%file:///home/ito/Desktop/e17_svn/ecore/src/lib/ecore/ecore_events.c#439%%%file:///home/ito/Desktop/e17_svn/ecore/src/lib/ecore/ecore_main.c#90%%%file:///home/ito/Desktop/e17_svn/elementary/src/lib/elm_entry.c#734%%%file:///home/ito/Desktop/e17_svn/edje/src/lib/edje_util.c#935
+
+[Document Manager]
+bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
+
+[Execution]
+Program arguments=
+Program uri=file:///home/ito/workspace/tasks/src/tasks%%%file:///home/nidhi/workspace/tasks/src/tasks
+Run in terminal=2
+Working directories=file:///home%%%file:///home/nidhi/workspace/tasks/src%%%file:///home/ito/workspace/tasks/src
+
+[Build]
+Configuration list=1:Default:%%%1:Debug:Debug%%%1:Profiling:Profiling%%%1:Optimized:Optimized
+Selected Configuration=Default
+BuildArgs/Default=
+BuildArgs/Debug='CFLAGS=-g -O0' 'CXXFLAGS=-g -O0' 'JFLAGS=-g -O0' 'FFLAGS=-g -O0'
+BuildArgs/Profiling='CFLAGS=-g -pg' 'CXXFLAGS=-g -pg' 'JFLAGS=-g -pg' 'FFLAGS=-g -pg'
+BuildArgs/Optimized='CFLAGS=-O2' 'CXXFLAGS=-O2' 'JFLAGS=-O2' 'FFLAGS=-O2'
+
+[Debugger]
+Breakpoint=1:file:///home/ito/workspace/tasks/src/gui.c:52:0:
+Stop at beginning=2

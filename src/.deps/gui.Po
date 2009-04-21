@@ -1,0 +1,462 @@
+gui.o: gui.c gui.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Elementary.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdio.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/features.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/cdefs.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/wordsize.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/gnu/stubs.h \
+  /usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2/include/stddef.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/types.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/typesizes.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/libio.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/_G_config.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/wchar.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/wchar.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/gconv.h \
+  /usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2/include/stdarg.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdio_lim.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sys_errlist.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdlib.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/types.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/time.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/endian.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/endian.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/select.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/select.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigset.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/time.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/sysmacros.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/pthreadtypes.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/alloca.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/unistd.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix_opt.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/confname.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/getopt.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/string.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/stat.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stat.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/time.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/param.h \
+  /usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2/include/limits.h \
+  /usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2/include/syslimits.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/limits.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix1_lim.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/local_lim.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/limits.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix2_lim.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/param.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/param.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dlfcn.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/dlfcn.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/math.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/huge_val.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/mathdef.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/mathcalls.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/fnmatch.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/ctype.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dirent.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/dirent.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/pwd.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/errno.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/errno.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/errno.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/errno.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm-generic/errno.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm-generic/errno-base.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/locale.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/locale.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/libintl.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/signal.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/signum.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/siginfo.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigaction.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigcontext.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/sigcontext.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigstack.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigthread.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/grp.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/glob.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/Eina.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_types.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_main.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_f16p16.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdint.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_rectangle.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_types.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_rectangle.x \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inlist.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_iterator.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_magic.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_accessor.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_file.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_array.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_error.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_array.x \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_list.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_list.x \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_hash.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_hash.x \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_lalloc.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_module.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_mempool.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_module.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_mempool.x \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_error.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_array.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_stringshare.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_magic.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_counter.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_rbtree.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_rbtree.x \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_accessor.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_iterator.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_benchmark.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_convert.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_cpu.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_tiler.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_rectangle.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Eet.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Evas.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Evas_Data.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Evas.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Getopt.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Input.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Job.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Txt.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_File.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Data.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Edje.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/E_DBus.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/strings.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/lib/dbus-1.0/include/dbus/dbus-arch-deps.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-macros.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-address.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-types.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-errors.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-bus.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-connection.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-memory.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-message.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-shared.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-misc.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-pending-call.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-protocol.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-server.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-signature.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-threads.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/E_Hal.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_stringshare.h \
+  db_sqlite.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sqlite3.h
+
+gui.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Elementary.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdio.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/features.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/cdefs.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/wordsize.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/gnu/stubs.h:
+
+/usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2/include/stddef.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/types.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/typesizes.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/libio.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/_G_config.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/wchar.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/wchar.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/gconv.h:
+
+/usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2/include/stdarg.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdio_lim.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sys_errlist.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdlib.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/types.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/time.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/endian.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/endian.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/select.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/select.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigset.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/time.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/sysmacros.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/pthreadtypes.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/alloca.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/unistd.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix_opt.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/confname.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/getopt.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/string.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/stat.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stat.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/time.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/param.h:
+
+/usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2/include/limits.h:
+
+/usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2/include/syslimits.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/limits.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix1_lim.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/local_lim.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/limits.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix2_lim.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/param.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/param.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dlfcn.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/dlfcn.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/math.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/huge_val.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/mathdef.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/mathcalls.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/fnmatch.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/ctype.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dirent.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/dirent.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/pwd.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/errno.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/errno.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/errno.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/errno.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm-generic/errno.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm-generic/errno-base.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/locale.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/locale.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/libintl.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/signal.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/signum.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/siginfo.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigaction.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigcontext.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/sigcontext.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigstack.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigthread.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/grp.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/glob.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/Eina.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_types.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_main.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_f16p16.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdint.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_rectangle.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_types.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_rectangle.x:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inlist.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_iterator.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_magic.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_accessor.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_file.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_array.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_error.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_array.x:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_list.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_list.x:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_hash.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_hash.x:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_lalloc.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_module.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_mempool.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_module.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_mempool.x:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_error.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_array.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_stringshare.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_magic.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_counter.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_rbtree.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_rbtree.x:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_accessor.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_iterator.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_benchmark.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_convert.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_cpu.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_tiler.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_rectangle.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Eet.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Evas.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Evas_Data.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Evas.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Getopt.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Input.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Job.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Txt.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_File.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Ecore_Data.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/Edje.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/E_DBus.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/strings.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/lib/dbus-1.0/include/dbus/dbus-arch-deps.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-macros.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-address.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-types.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-errors.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-bus.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-connection.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-memory.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-message.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-shared.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-misc.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-pending-call.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-protocol.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-server.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-signature.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dbus-1.0/dbus/dbus-threads.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/E_Hal.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_stringshare.h:
+
+db_sqlite.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sqlite3.h:
