@@ -44,7 +44,8 @@ EAPI int
 elm_main(int argc, char **argv)
 {
 	Evas_Object *win;
-
+	const char *theme;
+	
 	//int ret;
 
 	//get users home dir
@@ -53,7 +54,11 @@ elm_main(int argc, char **argv)
 
 	//adjust finger size
 	elm_finger_size_set(50);
-	
+
+	//paroli theme fix
+	theme = "tasks";
+	elm_theme_overlay_add(theme);
+		
 	//set up win
 	win = elm_win_add(NULL, "tasks", ELM_WIN_BASIC);
 	elm_win_title_set(win, "Tasks");

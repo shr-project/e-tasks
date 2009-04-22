@@ -363,7 +363,7 @@ Copyright (C) 2008 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/ito/workspace/tasks'
+ac_pwd='/home/nidhi/workspace/e-tasks'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -839,7 +839,7 @@ S["MAINTAINER_MODE_FALSE"]=""
 S["MAINTAINER_MODE_TRUE"]="#"
 S["am__untar"]="${AMTAR} xf -"
 S["am__tar"]="${AMTAR} chof - \"$$tardir\""
-S["AMTAR"]="${SHELL} /home/ito/workspace/tasks/missing --run tar"
+S["AMTAR"]="${SHELL} /home/nidhi/workspace/e-tasks/missing --run tar"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
 S["AWK"]="mawk"
@@ -847,12 +847,12 @@ S["mkdir_p"]="/bin/mkdir -p"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]="arm-angstrom-linux-gnueabi-strip"
-S["install_sh"]="$(SHELL) /home/ito/workspace/tasks/install-sh"
-S["MAKEINFO"]="${SHELL} /home/ito/workspace/tasks/missing --run makeinfo"
-S["AUTOHEADER"]="${SHELL} /home/ito/workspace/tasks/missing --run autoheader"
-S["AUTOMAKE"]="${SHELL} /home/ito/workspace/tasks/missing --run automake-1.10"
-S["AUTOCONF"]="${SHELL} /home/ito/workspace/tasks/missing --run autoconf"
-S["ACLOCAL"]="${SHELL} /home/ito/workspace/tasks/missing --run aclocal-1.10"
+S["install_sh"]="$(SHELL) /home/nidhi/workspace/e-tasks/install-sh"
+S["MAKEINFO"]="${SHELL} /home/nidhi/workspace/e-tasks/missing --run makeinfo"
+S["AUTOHEADER"]="${SHELL} /home/nidhi/workspace/e-tasks/missing --run autoheader"
+S["AUTOMAKE"]="${SHELL} /home/nidhi/workspace/e-tasks/missing --run automake-1.10"
+S["AUTOCONF"]="${SHELL} /home/nidhi/workspace/e-tasks/missing --run autoconf"
+S["ACLOCAL"]="${SHELL} /home/nidhi/workspace/e-tasks/missing --run aclocal-1.10"
 S["VERSION"]="0.10"
 S["PACKAGE"]="tasks"
 S["CYGPATH_W"]="echo"

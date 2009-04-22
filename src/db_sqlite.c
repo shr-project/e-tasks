@@ -34,6 +34,55 @@ void open_database(void)
 	}
 }
 
+void first_run(void)
+{
+	char *sql, *err;
+	int db_ret;
+	
+	//create tables
+	sql ="CREATE TABLE tasks(key integer primary key, cb integer, priority integer, task text, alarm integer, repeat integer, date integer, category text);";
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+		if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+		}
+	}	
+	sql = "CREATE TABLE category(key integer primary key, category text);";
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+		if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+		}
+	}
+	// add default values
+	sql ="INSERT INTO category(category) VALUES('Personal');";
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+		if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+		}
+	}
+	sql ="INSERT INTO category(category) VALUES('Business');";
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+		if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+		}
+	}
+	sql ="INSERT INTO category(category) VALUES('Home');";
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+		if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+		}
+	}
+}
+
 void restore_state(void)
 {
 	int db_ret, i=0;
@@ -47,7 +96,7 @@ void restore_state(void)
 	sql = "SELECT key, cb, priority, task, strftime('%d-%m', date), category FROM tasks";	
 	db_ret = sqlite3_prepare(tasks, sql, strlen(sql), &stmt, &tail);
 	if(db_ret != SQLITE_OK) {
-		//if (strcmp(sqlite3_errmsg(songs), "no such table: tasks")==0) first_run();
+		if (strcmp(sqlite3_errmsg(tasks), "no such table: tasks")==0) first_run();
 		printf("SQL error: %d %s\n", db_ret, sqlite3_errmsg(tasks));
 	}
 	while((db_ret = sqlite3_step(stmt)) == SQLITE_ROW) {
@@ -96,8 +145,8 @@ void show_cat_tasks(char *ca)
 			}
 		}
 	}
-	item = elm_genlist_first_item_get(list);
-	if(item) elm_genlist_item_selected_set(item, 1);
+	//item = elm_genlist_first_item_get(list);
+	//if(item) elm_genlist_item_selected_set(item, 1);
 }
 
 void add_hs_items(Evas_Object *win, Evas_Object *bx, Evas_Object *bt, int i)
