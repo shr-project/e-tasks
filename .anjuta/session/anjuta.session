@@ -4,15 +4,16 @@ Maximized=1
 Geometry=1280x750+0+25
 
 [File Loader]
-Files=file:///home/nidhi/workspace/e-tasks/src/db_sqlite.c#132%%%file:///home/nidhi/workspace/e-tasks/src/db_sqlite.h#1%%%file:///home/nidhi/workspace/e-tasks/src/gui.c#489%%%file:///home/nidhi/workspace/e-tasks/src/gui.h#1%%%file:///home/nidhi/workspace/e-tasks/src/main.c#73
+Files=file:///home/nidhi/workspace/e-tasks/src/gui.c#609%%%file:///home/nidhi/workspace/e-tasks/src/db_sqlite.c#116%%%file:///home/nidhi/workspace/e-tasks/src/db_sqlite.h#1%%%file:///home/nidhi/workspace/e-tasks/src/gui.h#14%%%file:///home/nidhi/workspace/e-tasks/src/main.c#29%%%file:///home/nidhi/workspace/reasye17/evas/src/lib/canvas/evas_object_smart.c#445
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
 
 [Execution]
-Program uri=file:///home/nidhi/workspace/e-tasks/src/tasks%%%file:///home/ito/workspace/tasks/src/tasks%%%file:///home/nidhi/workspace/tasks/src/tasks
+Program uri=file:///home/nidhi/workspace/e-tasks/src/tasks%%%file:///home/ito/workspace/e-tasks/src/tasks%%%file:///home/ito/workspace/tasks/src/tasks%%%file:///home/nidhi/workspace/tasks/src/tasks
 Run in terminal=2
-Working directories=file:///home/nidhi/workspace/e-tasks/src%%%file:///home%%%file:///home/nidhi/workspace/tasks/src%%%file:///home/ito/workspace/tasks/src
+Working directories=file:///home/nidhi/workspace/e-tasks/src%%%file:///home/ito/workspace/e-tasks/src%%%file:///home%%%file:///home/nidhi/workspace/tasks/src%%%file:///home/ito/workspace/tasks/src
+Environment variables=LD_LIBRARY_PATH=
 
 [Build]
 Configuration list=1:Default:%%%1:Debug:Debug%%%1:Profiling:Profiling%%%1:Optimized:Optimized
@@ -23,5 +24,5 @@ BuildArgs/Profiling='CFLAGS=-g -pg' 'CXXFLAGS=-g -pg' 'JFLAGS=-g -pg' 'FFLAGS=-g
 BuildArgs/Optimized='CFLAGS=-O2' 'CXXFLAGS=-O2' 'JFLAGS=-O2' 'FFLAGS=-O2'
 
 [Debugger]
-Breakpoint=1:file:///home/ito/workspace/tasks/src/gui.c:52:0:
+Breakpoint=1:file:///home/ito/workspace/tasks/src/gui.c:52:0:%%%1:file:///home/nidhi/workspace/e-tasks/src/gui.c:242:0:%%%1:file:///home/nidhi/workspace/e-tasks/src/gui.c:254:0:
 Stop at beginning=2

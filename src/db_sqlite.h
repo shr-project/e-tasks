@@ -29,6 +29,7 @@ void insert_record(int i);
 void populate_cat_list(Evas_Object *li);
 void del_category(char * cat);
 void add_category(char * cat);
+void del_record(int i);
 
 sqlite3 *tasks;
 extern Evas_Object *list, *hs, *hs1, *cat_list;

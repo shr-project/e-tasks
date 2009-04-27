@@ -32,6 +32,7 @@ void open_database(void)
 		sqlite3_close(tasks);
 		db_ret = sqlite3_open(db, &tasks);
 	}
+	strcpy(sel_category, "");
 }
 
 void first_run(void)
@@ -85,7 +86,7 @@ void first_run(void)
 
 void restore_state(void)
 {
-	int db_ret, i=0;
+	int db_ret, i=1;
 	char *sql;
 	const char  *tail;
 	sqlite3_stmt *stmt;
@@ -112,8 +113,8 @@ void restore_state(void)
 	}
 	sqlite3_finalize(stmt);
 	total_tasks = i;
-	show_cat_tasks (" All Tasks ");
-	strcpy(sel_category, " All Tasks ");
+	if(strcmp(sel_category, "")== 0) strcpy(sel_category, " All Tasks ");
+	show_cat_tasks (sel_category);
 }
 
 void show_cat_tasks(char *ca)
@@ -123,7 +124,7 @@ void show_cat_tasks(char *ca)
 	
 	elm_genlist_clear(list);
 	if (strcmp(ca, " All Tasks ") == 0) {
-		for(i=0; i< total_tasks; i++) {
+		for(i=1; i< total_tasks; i++) {
 			if (!Task[i].cb) {
 				task_list[i] = elm_genlist_item_append(list, &itc1, &Task[i], NULL, ELM_GENLIST_ITEM_NONE, NULL, NULL);
 			}
@@ -131,7 +132,7 @@ void show_cat_tasks(char *ca)
 	}
 
 	else if (strcmp(ca, "Deleted Tasks") == 0) {
-		for(i=0; i< total_tasks; i++) {
+		for(i=1; i< total_tasks; i++) {
 			if (Task[i].cb) {
 				task_list[i] = elm_genlist_item_append(list, &itc1, &Task[i], NULL, ELM_GENLIST_ITEM_NONE, NULL, NULL);
 			}
@@ -139,14 +140,14 @@ void show_cat_tasks(char *ca)
 	}
 	
 	else {
-		for(i=0; i< total_tasks; i++) {
+		for(i=1; i< total_tasks; i++) {
 			if ((strcmp(Task[i].cat, ca)==0) && (!Task[i].cb)) {
 				task_list[i] = elm_genlist_item_append(list, &itc1, &Task[i], NULL, ELM_GENLIST_ITEM_NONE, NULL, NULL);
 			}
 		}
 	}
-	//item = elm_genlist_first_item_get(list);
-	//if(item) elm_genlist_item_selected_set(item, 1);
+	item = elm_genlist_first_item_get(list);
+	if(item) elm_genlist_item_selected_set(item, 1);
 }
 
 void add_hs_items(Evas_Object *win, Evas_Object *bx, Evas_Object *bt, int i)
@@ -199,7 +200,7 @@ void add_hs_items(Evas_Object *win, Evas_Object *bx, Evas_Object *bt, int i)
 		}
 		else {
 			bt = elm_button_add(win);
-			elm_button_label_set(bt,cate);
+			elm_button_label_set(bt, cate);
 			elm_box_pack_end(bx, bt);
 			tystr = strdup(cate);
 			evas_object_smart_callback_add(bt, "clicked", set_category, (char *)tystr);
@@ -221,7 +222,8 @@ void update_record(int rec_no)
 	int db_ret;
 	char *err, *sql, tystr[11], *dd, *mm, sql_date[11];
 
-	rec_no -= 1;
+	//rec_no += 1;
+        printf("%d\n", rec_no);
 	//convert date from dd-mm to yyyy-mm-dd
 	//get current year
 	if(strcmp(Task[rec_no].date, "No Date") != 0) {
@@ -253,6 +255,23 @@ void insert_record(int i)
 	
 	sql = sqlite3_mprintf("INSERT INTO tasks (key, cb, priority, task, date, category) VALUES(%d, %d, %d, '%s', CURRENT_DATE, '%s');", 
 	                      	Task[i].key, Task[i].cb, Task[i].pr, Task[i].text, Task[i].cat);
+	printf("%s\n", sql);
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+	  if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+	  }
+	}
+	sqlite3_free(sql);
+}
+
+void del_record(int i)
+{
+	int db_ret;
+	char *err, *sql;
+	
+	sql = sqlite3_mprintf("DELETE FROM tasks WHERE key = %d;", i);
 	printf("%s\n", sql);
 	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
 	if (db_ret != SQLITE_OK) {
