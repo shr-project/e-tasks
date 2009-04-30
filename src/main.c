@@ -28,7 +28,7 @@
 char home_dir[255], sel_category[255];
 Elm_Genlist_Item *task_list[500];
 Evas_Object *list, *hs, *pr_hs, *date_hs, *entry, *hs1, *tk, *hv, *pr_bt, *cat_list;
-Evas_Object *c_pr_bt, *cat_dialog, *cat_bt, *sel_cat_bt, *date_bt, *det_page;
+Evas_Object *c_pr_bt, *cat_dialog, *cat_bt, *sel_cat_bt, *date_bt, *det_page, *entry;
 int total_tasks, WRITE=0, last_rec= -1;
 
 //TODO : dynamic memory management
@@ -54,7 +54,7 @@ elm_main(int argc, char **argv)
 	sprintf(home_dir, "%s", getenv(name));
 
 	//adjust finger size
-	elm_finger_size_set(50);
+	elm_finger_size_set(55);
 
 	//paroli theme fix
 	theme = "tasks";

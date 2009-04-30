@@ -94,7 +94,7 @@ void restore_state(void)
 	elm_genlist_clear(list);
 
 	//load the data 
-	sql = "SELECT key, cb, priority, task, strftime('%d-%m', date), category FROM tasks";	
+	sql = "SELECT key, cb, priority, task, strftime('%d-%m', date), category FROM tasks ORDER BY priority, date";	
 	db_ret = sqlite3_prepare(tasks, sql, strlen(sql), &stmt, &tail);
 	if(db_ret != SQLITE_OK) {
 		if (strcmp(sqlite3_errmsg(tasks), "no such table: tasks")==0) first_run();
@@ -220,18 +220,21 @@ void select_pr(void *data, Evas_Object *obj, void *event_info)
 void update_record(int rec_no)
 {
 	int db_ret;
-	char *err, *sql, tystr[11], *dd, *mm, sql_date[11];
+	char *err, *sql, tystr[11], *dd, *mm, sql_date[11], yr[5];
+	time_t t;
+	struct tm *tm;
 
-	//rec_no += 1;
-        printf("%d\n", rec_no);
-	//convert date from dd-mm to yyyy-mm-dd
+	t = time(NULL);
+    tm = localtime(&t);
+	
 	//get current year
 	if(strcmp(Task[rec_no].date, "No Date") != 0) {
 		sprintf(tystr, "%s-", Task[rec_no].date);
-		printf("%s\n", tystr);
 		dd = strtok(tystr, "-");
 		mm = strtok(NULL, "-");
-		sprintf(sql_date, "2009-%s-%s", mm, dd);
+		//get current year
+		strftime(yr, 5, "%Y", tm);
+		sprintf(sql_date, "%s-%s-%s", yr, mm, dd);
 	}
 	else strcpy(sql_date, "No Date");
 	
