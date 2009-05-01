@@ -4,13 +4,12 @@ Maximized=1
 Geometry=1280x750+0+25
 
 [File Loader]
-Files=file:///home/nidhi/workspace/e-tasks/src/gui.h#20%%%file:///home/nidhi/workspace/e-tasks/src/main.c#47%%%file:///home/nidhi/workspace/e-tasks/src/gui.c#657%%%file:///home/nidhi/workspace/e-tasks/src/db_sqlite.c#228%%%file:///home/nidhi/workspace/e-tasks/src/db_sqlite.h#1
+Files=file:///home/nidhi/workspace/e-tasks/src/gui.h#31%%%file:///home/nidhi/workspace/e-tasks/src/main.c#30%%%file:///home/nidhi/workspace/e-tasks/src/gui.c#1095%%%file:///home/nidhi/workspace/e-tasks/src/db_sqlite.c#228%%%file:///home/nidhi/workspace/e-tasks/src/db_sqlite.h#1
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
 
 [Execution]
-Program arguments=
 Program uri=file:///home/nidhi/workspace/e-tasks/src/tasks%%%file:///home/ito/workspace/e-tasks/src/tasks%%%file:///home/ito/workspace/tasks/src/tasks%%%file:///home/nidhi/workspace/tasks/src/tasks
 Run in terminal=2
 Working directories=file:///home/nidhi/workspace/e-tasks/src%%%file:///home/ito/workspace/e-tasks/src%%%file:///home%%%file:///home/nidhi/workspace/tasks/src%%%file:///home/ito/workspace/tasks/src
@@ -25,5 +24,5 @@ BuildArgs/Profiling='CFLAGS=-g -pg' 'CXXFLAGS=-g -pg' 'JFLAGS=-g -pg' 'FFLAGS=-g
 BuildArgs/Optimized='CFLAGS=-O2' 'CXXFLAGS=-O2' 'JFLAGS=-O2' 'FFLAGS=-O2'
 
 [Debugger]
-Breakpoint=1:file:///home/ito/workspace/tasks/src/gui.c:52:0:%%%1:file:///home/nidhi/workspace/e-tasks/src/gui.c:237:0:%%%1:file:///home/nidhi/workspace/e-tasks/src/gui.c:0:0:%%%1:file:///home/nidhi/workspace/e-tasks/src/gui.c:253:0:
+Breakpoint=1:file:///home/ito/workspace/tasks/src/gui.c:52:0:%%%1:file:///home/nidhi/workspace/e-tasks/src/gui.c:0:0:
 Stop at beginning=2

@@ -130,14 +130,6 @@ void set_category(void *data, Evas_Object *obj, void *event_info)
 	else WRITE = 1;
     if (strcmp(sel_category, " All Tasks ") !=0 &&
         strcmp(sel_category, category) != 0) elm_genlist_item_del(item);
-        
-	//new_item = elm_genlist_item_prev_get(item);
-	//if(new_item) elm_genlist_item_selected_set(new_item, 1);
-	//else {
-		//new_item = elm_genlist_first_item_get(list);
-		//if(new_item) elm_genlist_item_selected_set(new_item, 1);
-	//}
-	//if(strcmp(sel_category, category) != 0) elm_genlist_item_del(item);
 }
 
 void set_date(void *data, Evas_Object *obj, void *event_info)
@@ -587,6 +579,19 @@ void save_button_clicked(void *data, Evas_Object *obj, void *event_info)
 	elm_genlist_item_update(task_list[tsk->no]);
 }
 
+void create_cat_hover(void)
+{
+	Evas_Object *bx, *bt;
+	bt = elm_button_add(win);
+	
+	if (cat_hv_bx) evas_object_del(cat_hv_bx);
+	cat_hv_bx = elm_box_add(win);
+	add_hs_items (win, cat_hv_bx, bt, 1);
+	evas_object_show(cat_hv_bx);
+	elm_hover_content_set(hs1, "top", cat_hv_bx);
+	evas_object_hide(hs1);
+}
+
 //for genlist
 Elm_Genlist_Item_Class itc1;
 
@@ -639,7 +644,7 @@ Evas_Object *gl_icon_get(const void *data, Evas_Object *obj, const char *part)
    else if (!strcmp(part, "elm.swallow.end"))
      {
 		Evas_Object *ic, *bx, *lb_date;
-		char buf[PATH_MAX], _time[11], yr[15];
+		char buf[PATH_MAX], _time[20], yr[15];
 		struct tm *tm, tim;
 		time_t t, cur_t, tmp_t;
 
@@ -655,7 +660,6 @@ Evas_Object *gl_icon_get(const void *data, Evas_Object *obj, const char *part)
 			sprintf(_time, "%s-%s", tsk->date, yr);
 			strptime(_time, "%d-%m-%Y %H:%M:%S", &tim);	
 			t = mktime(&tim);		
-
 			if (t < cur_t) {
 				ic= elm_icon_add(obj);
 				snprintf(buf, sizeof(buf), "/usr/share/e-tasks/exclaim.png");
@@ -783,15 +787,15 @@ void create_gui(Evas_Object *win)
 	evas_object_show(bx);
 	elm_hover_content_set(hs, "bottom", bx); */
 
-	//add box for scroller
+/*	//add box for scroller
 	hbx = elm_box_add(win);
 	elm_box_horizontal_set(hbx, 1);
-	evas_object_size_hint_max_set(hbox, 220, 640);
+	//evas_object_size_hint_max_set(hbox, 220, 640);
 	evas_object_size_hint_weight_set(hbx, 0.0, 0.0);
 	elm_box_pack_end(hbox, hbx);
 	evas_object_show(hbx);
 	
-/*	//add scroller for entry
+	//add scroller for entry
 	sc = elm_scroller_add(win);
 	elm_scroller_content_min_limit(sc, 1, 1);
 	//elm_scroller_policy_set(sc, ELM_SCROLLER_POLICY_OFF, ELM_SCROLLER_POLICY_OFF);
@@ -807,7 +811,7 @@ void create_gui(Evas_Object *win)
 	elm_entry_select_all(tk);
 	//evas_object_size_hint_weight_set(tk, 1.0, 0.0);
 	//evas_object_size_hint_align_set(tk, -1.0, 0.0);
-	evas_object_size_hint_max_set(tk, 220, 640);
+	//evas_object_size_hint_max_set(tk, 220, 640);
 	elm_entry_single_line_set(tk ,1);
 	elm_box_pack_end(hbox, tk);
 	//elm_scroller_content_set(sc, tk);
@@ -836,7 +840,6 @@ void create_gui(Evas_Object *win)
 	evas_object_show(bt);
 
 	bx = elm_box_add(win);
-	//add categories
 	add_dates(win, bx, bt);
 	evas_object_show(bx);
 	elm_hover_content_set(date_hs, "bottom", bx);
@@ -923,12 +926,7 @@ void create_gui(Evas_Object *win)
 	elm_button_label_set(bt, " All Tasks ");
 	elm_hover_content_set(hs1, "middle", bt);
 	evas_object_show(bt);
-
-	bx = elm_box_add(win);
-	//add categories
-	add_hs_items (win, bx, bt, 1);
-	evas_object_show(bx);
-	elm_hover_content_set(hs1, "top", bx);
+	create_cat_hover ();
 
 	// make window full screen
 	evas_object_resize(win, 480, 640);
@@ -986,7 +984,7 @@ void cat_dialog_add(void *data, Evas_Object *obj, void *event_info)
 	elm_genlist_item_append(cat_list, &itc2, ty_data, NULL, ELM_GENLIST_ITEM_NONE,
 								  NULL, NULL);
 	evas_object_del(cat_dialog);
-	//TODO : add button to cat hover
+	create_cat_hover ();
 }
 
 void create_cat_dialog(void *data, Evas_Object *obj, void *event_info)
@@ -1093,7 +1091,8 @@ void  del_cat_button_clicked(void *data, Evas_Object *obj, void *event_info)
 	del_category(_cat);
 	//remove item from list
 	elm_genlist_item_del(item);
-	//TODO : remove button from category hover
+	create_cat_hover ();
+	if(strcmp(sel_category, _cat) == 0) select_category (" All Tasks ", NULL, NULL);
 }
 
 char *cat_label_get(const void *data, Evas_Object *obj, const char *part)
