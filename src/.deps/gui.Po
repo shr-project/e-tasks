@@ -17,10 +17,13 @@ gui.o: gui.c gui.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdio_lim.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sys_errlist.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdlib.h \
-  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/types.h \
-  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/time.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/waitflags.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/waitstatus.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/endian.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/endian.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/xlocale.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/types.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/time.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/select.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/select.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigset.h \
@@ -30,6 +33,7 @@ gui.o: gui.c gui.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/alloca.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/unistd.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix_opt.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/environments.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/confname.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/getopt.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/string.h \
@@ -44,12 +48,17 @@ gui.o: gui.c gui.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/local_lim.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/limits.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix2_lim.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/xopen_lim.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/param.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/param.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/dlfcn.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/dlfcn.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/math.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/huge_val.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/huge_valf.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/huge_vall.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/inf.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/nan.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/mathdef.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/mathcalls.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/fnmatch.h \
@@ -73,6 +82,9 @@ gui.o: gui.c gui.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigcontext.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/sigcontext.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigstack.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/ucontext.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/procfs.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/user.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigthread.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/grp.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/glob.h \
@@ -191,13 +203,19 @@ gui.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdlib.h:
 
-/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/types.h:
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/waitflags.h:
 
-/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/time.h:
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/waitstatus.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/endian.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/endian.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/xlocale.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/types.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/time.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/select.h:
 
@@ -216,6 +234,8 @@ gui.h:
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/unistd.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix_opt.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/environments.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/confname.h:
 
@@ -245,6 +265,8 @@ gui.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix2_lim.h:
 
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/xopen_lim.h:
+
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/linux/param.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/param.h:
@@ -256,6 +278,14 @@ gui.h:
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/math.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/huge_val.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/huge_valf.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/huge_vall.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/inf.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/nan.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/mathdef.h:
 
@@ -302,6 +332,12 @@ gui.h:
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/asm/sigcontext.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigstack.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/ucontext.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/procfs.h:
+
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/sys/user.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigthread.h:
 

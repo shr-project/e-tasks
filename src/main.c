@@ -37,7 +37,7 @@ int total_tasks, WRITE=0, last_rec= -1;
 static void
 my_win_del(void *data, Evas_Object *obj, void *event_info)
 {
-	//save_state();
+	save_state();
 	elm_exit();
 }
 

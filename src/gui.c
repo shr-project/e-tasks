@@ -14,9 +14,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
+#define _GNU_SOURCE
 #include "gui.h"
 #include "db_sqlite.h"
 #include <time.h>
+
+//variable for a dummy task to be used when user sets values with no task selected
+int dummy_pr =0;
+char dummy_date[11];
+char dummy_cat[255];
 
 typedef struct _Details
 {
@@ -95,25 +101,25 @@ void set_priority(void *data, Evas_Object *obj, void *event_info)
 
 	//change priority value of selected task
 	char *prio = (char *)data;
+	ty = atoi(prio);
+	sprintf(tystr, "%d", ty);
+	elm_button_label_set(pr_bt, tystr);
+	
 	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
 	evas_object_hide(hv);
-	if (!item) return;
+	if (!item) {
+		dummy_pr = atoi(prio);
+		return;
+	}
 	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
-	ty = atoi(prio);
 	if(tsk->pr == ty) return;
 	tsk->pr = ty;
-	sprintf(tystr, "%d", tsk->pr);
-	elm_button_label_set(pr_bt, tystr);
-	if (total_tasks == 1) {
-		update_record (tsk->no);
-		elm_genlist_item_update(item);
-	}
-	else WRITE = 1;
+	WRITE = 1;
 }
 
 void set_category(void *data, Evas_Object *obj, void *event_info)
 {
-	Elm_Genlist_Item *item;//, *new_item;
+	Elm_Genlist_Item *item;
 	//change category value of selected task
 	char *category = data;
 	item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
@@ -123,11 +129,7 @@ void set_category(void *data, Evas_Object *obj, void *event_info)
 	if (strcmp(tsk->cat, category) == 0) return;
 	strcpy(tsk->cat, category);
 	elm_button_label_set(cat_bt, category);
-	if (total_tasks == 1) {
-		update_record (tsk->no);
-		elm_genlist_item_update(item);
-	}
-	else WRITE = 1;
+	WRITE = 1;
     if (strcmp(sel_category, " All Tasks ") !=0 &&
         strcmp(sel_category, category) != 0) elm_genlist_item_del(item);
 }
@@ -139,14 +141,14 @@ void set_date(void *data, Evas_Object *obj, void *event_info)
 	elm_button_label_set(date_bt, dt);
 	evas_object_hide(date_hs);
 	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	if (!item) {
+		strcpy(dummy_date, dt);
+		return;
+	}
 	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
 	if (strcmp(tsk->date, dt) == 0) return;
 	strcpy(tsk->date, dt);
-	if (total_tasks == 1) {
-		update_record (tsk->no);
-		elm_genlist_item_update(item);
-	}
-	else WRITE = 1;
+	WRITE = 1;
 }
 
 void task_cb_changed(void *data, Evas_Object *obj, void *event_info)
@@ -254,13 +256,13 @@ void det_page_del(void *data, Evas_Object *obj, void *event_info)
 	_Task *tsk = (_Task *)data;
 	del_record (tsk->key);
 	last_rec = -1;
-	restore_state ();
+	load_data ();
 	cat_win_del (det_page, NULL, NULL); 
 }
 
 void create_details_page(void *data, Evas_Object *obj, void *event_info)
 {
-	Evas_Object *bg, *inwin, *lb, *bt, *vbox, *hbox, *hbox1;
+	Evas_Object *bg, *tb, *lb, *bt;
 	Evas_Object *det_hv, *bx, *c_date_hs, *c_date_bt, *fr1, *fr, *bt_done;
 	int i;
 	char no[2], dt[6];
@@ -283,78 +285,55 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	elm_win_resize_object_add(det_page, bg);
 	evas_object_size_hint_weight_set(bg, 1.0, 1.0);
 	evas_object_show(bg);
-
-	inwin = elm_win_inwin_add(det_page);
-	elm_win_resize_object_add(det_page, inwin);
-	elm_win_inwin_style_set(inwin, "default");
-
-	//add vbox 
-	vbox = elm_box_add(det_page);
-	evas_object_size_hint_weight_set(vbox, 1.0, 1.0);
-	elm_win_resize_object_add(det_page, vbox);
-	elm_win_inwin_content_set(inwin, vbox);
-	evas_object_show(vbox);
-
-	//add hbox to vbox
-	hbox = elm_box_add(det_page);
-	elm_box_horizontal_set(hbox, 1);
-	elm_box_pack_end(vbox, hbox);
-	evas_object_show(hbox);
+	
+	tb = elm_table_add(det_page);
+	elm_win_resize_object_add(det_page, tb);
+	evas_object_size_hint_weight_set(tb, 1.0, 1.0);
+	evas_object_size_hint_align_set(tb, -1.0, -1.0);
+	evas_object_show(tb);
 	
 	//add a frame 
 	fr = elm_frame_add(det_page);
 	elm_frame_style_set(fr, "outdent_top");
-	evas_object_size_hint_weight_set(fr, -1.0, 0.0);
-	evas_object_size_hint_align_set(fr, -1.0, -1.0);
-	elm_box_pack_end(hbox, fr);
+	evas_object_size_hint_align_set(fr, 0.5, -1.0);
+ 	elm_table_pack(tb, fr, 0, 0, 3, 1);
 	evas_object_show(fr);
 
 	//add a label to frame
 	lb = elm_label_add(det_page);
 	elm_label_label_set(lb,"Edit Task Details");
+	evas_object_size_hint_align_set(lb, 0.5, -1.0);
 	elm_frame_content_set(fr, lb);
 	evas_object_show(lb);
-	
-	//add hbox to vbox
-	hbox = elm_box_add(det_page);
-	elm_box_horizontal_set(hbox, 1);
-	elm_box_pack_end(vbox, hbox);
-	evas_object_show(hbox);
 
-	//add a label to hbox
+	//add a label 
 	lb = elm_label_add(det_page);
-	elm_label_label_set(lb,"     Task: ");
-	elm_box_pack_end(hbox, lb);
+	elm_label_label_set(lb,"Task:");
+	evas_object_size_hint_align_set(lb, 1.0, 0.5);
+ 	elm_table_pack(tb, lb, 0, 1, 1, 1);
 	evas_object_show(lb);
 
-	//add an entry to hbox
+	//add an entry 
 	entry = elm_entry_add(det_page);
 	elm_entry_single_line_set(entry, 1);
 	elm_entry_editable_set(entry, 1);
 	elm_entry_entry_set(entry, tsk->text);
 	elm_entry_line_wrap_set(entry, 0);
-	elm_box_pack_end(hbox, entry);
+ 	elm_table_pack(tb, entry, 1, 1, 2, 1);
 	evas_object_show(entry);
-
-	//add hbox to vbox
-	hbox = elm_box_add(det_page);
-	elm_box_horizontal_set(hbox, 1);
-	evas_object_size_hint_weight_set(hbox, 1.0, 0.0);
-	evas_object_size_hint_align_set(hbox, -1.0, 0.0);
-	elm_box_pack_end(vbox, hbox);
-	evas_object_show(hbox);
 
 	//add a label to hbox
 	lb = elm_label_add(det_page);
-	elm_label_label_set(lb,"  Priority:");
-	elm_box_pack_end(hbox, lb);
+	elm_label_label_set(lb,"Priority:");
+	evas_object_size_hint_align_set(lb, 1.0, 0.5);
+ 	elm_table_pack(tb, lb, 0, 2, 1, 1);
 	evas_object_show(lb);
 
 	//add hover for priority
 	det_hv = elm_hover_add(det_page);
 	//add box for hover
 	bx = elm_box_add(det_page);
-	elm_box_pack_end(hbox, bx);
+ 	elm_table_pack(tb, bx, 1, 2, 2, 1);
 	evas_object_show(bx);
 
 	c_pr_bt = elm_button_add(det_page);
@@ -388,24 +367,17 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	evas_object_show(bx);
 	elm_hover_content_set(det_hv, "bottom", bx);
 
-	//add hbox to vbox
-	hbox = elm_box_add(det_page);
-	elm_box_horizontal_set(hbox, 1);
-	evas_object_size_hint_weight_set(hbox, 1.0, 0.0);
-	evas_object_size_hint_align_set(hbox, -1.0, 0.0);
-	elm_box_pack_end(vbox, hbox);
-	evas_object_show(hbox);
-
 	//add a label to hbox
 	lb = elm_label_add(det_page);
 	elm_label_label_set(lb,"Category:");
-	elm_box_pack_end(hbox, lb);
+	evas_object_size_hint_align_set(lb, 1.0, 0.5);
+ 	elm_table_pack(tb, lb, 0, 3, 1, 1);
 	evas_object_show(lb);
 
 	hs = elm_hover_add(det_page);
 	//add box for hover
 	bx = elm_box_add(det_page);
-	elm_box_pack_end(hbox, bx);
+ 	elm_table_pack(tb, bx, 1, 3, 2, 1);
 	evas_object_show(bx);
 
 	cat_bt = elm_button_add(det_page);
@@ -426,24 +398,19 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	add_hs_items (det_page, bx, bt, 0);
 	evas_object_show(bx);
 	elm_hover_content_set(hs, "bottom", bx); 
-	
-	//add hbox to vbox
-	hbox = elm_box_add(det_page);
-	elm_box_horizontal_set(hbox, 1);
-	elm_box_pack_end(vbox, hbox);
-	evas_object_show(hbox);
 
 	//add a label to hbox
 	lb = elm_label_add(det_page);
-	elm_label_label_set(lb,"     Date:");
-	elm_box_pack_end(hbox, lb);
+	elm_label_label_set(lb, "Date:");
+	evas_object_size_hint_align_set(lb, 1.0, 0.5);
+ 	elm_table_pack(tb, lb, 0, 4, 1, 1);
 	evas_object_show(lb);
 
 	//add hover for date
 	c_date_hs = elm_hover_add(det_page);
 	//add box for hover
 	bx = elm_box_add(det_page);
-	elm_box_pack_end(hbox, bx);
+ 	elm_table_pack(tb, bx, 1, 4, 2, 1);
 	evas_object_show(bx);
 
 	c_date_bt = elm_button_add(det_page);
@@ -507,33 +474,24 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	elm_frame_style_set(fr1, "outdent_bottom");
 	evas_object_size_hint_weight_set(fr1, -1.0, 0.0);
 	evas_object_size_hint_align_set(fr1, -1.0, -1.0);
-	elm_box_pack_end(vbox, fr1);
+ 	elm_table_pack(tb, fr1, 0, 5, 3, 1);
 	evas_object_show(fr1);
-	
-	//add another hbox
-	hbox1 = elm_box_add(det_page);
-	elm_box_horizontal_set(hbox1, 1);
-	evas_object_size_hint_weight_set(hbox1, -1.0, 0.0);
-	evas_object_size_hint_align_set(hbox1, -1.0, -1.0);
-	//elm_box_pack_end(vbox, hbox1);
-	elm_frame_content_set(fr1, hbox1);
-	evas_object_show(hbox1);
 	
 	//add yes button
 	bt_done = elm_button_add(det_page);
 	elm_button_label_set(bt_done, "Done");
-	evas_object_size_hint_weight_set(bt_done, 1.0, 1.0);
+	evas_object_size_hint_weight_set(bt_done, 1.0, 0.0);
 	evas_object_size_hint_align_set(bt_done, -1.0, -1.0);
-	elm_box_pack_end(hbox1, bt_done);
+ 	elm_table_pack(tb, bt_done, 0, 6, 1, 1);
 	evas_object_show(bt_done);
 	evas_object_smart_callback_add(bt_done, "clicked", det_page_done, (_Task *)tsk);
 	
 	//add yes button
 	bt = elm_button_add(det_page);
 	elm_button_label_set(bt, "Delete");
-	evas_object_size_hint_weight_set(bt, 1.0, 1.0);
+	evas_object_size_hint_weight_set(bt, 1.0, 0.0);
 	evas_object_size_hint_align_set(bt, -1.0, -1.0);
-	elm_box_pack_end(hbox1, bt);
+ 	elm_table_pack(tb, bt, 1, 6, 1, 1);
 	evas_object_show(bt);
 	evas_object_smart_callback_add(bt, "clicked", det_page_del, (_Task *)tsk);
 
@@ -548,14 +506,12 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	
 	//add close button
 	bt = elm_button_add(det_page);
-	evas_object_size_hint_weight_set(bt, 1.0, 1.0);
+	evas_object_size_hint_weight_set(bt, 1.0, 0.0);
 	evas_object_size_hint_align_set(bt, -1.0, -1.0);
 	elm_button_label_set(bt, "Cancel");
-	elm_box_pack_end(hbox1, bt);
+ 	elm_table_pack(tb, bt, 2, 6, 1, 1);
 	evas_object_show(bt);
 	evas_object_smart_callback_add(bt, "clicked", cat_win_del, det_page);
-
-	evas_object_show(inwin);
 	
 	evas_object_resize(det_page, 480, 640);
 	evas_object_show(det_page);
@@ -567,21 +523,57 @@ void save_button_clicked(void *data, Evas_Object *obj, void *event_info)
 	
 	//get task no
 	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
-	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
-	
-	//get data from entry
-	sprintf(te_data, "%s", (const char *)elm_entry_entry_get(tk));
-	task_entry = strtok(te_data, "<");
-	sprintf(tsk->text, "%s", task_entry);
-	
-	//save data to database
-	update_record(tsk->no);
-	elm_genlist_item_update(task_list[tsk->no]);
+	if (item) {
+		_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
+		
+		//get data from entry
+		sprintf(te_data, "%s", (const char *)elm_entry_entry_get(tk));
+		task_entry = strtok(te_data, "<");
+		sprintf(tsk->text, "%s", task_entry);
+		
+		//save data to database
+		update_record(tsk->no);
+		elm_genlist_item_update(task_list[tsk->no]);
+	}
+	else { //add a new record with this data
+		time_t curtime;
+		struct tm *loctime;
+		char dt[6], te_data[255], *task_entry;
+		int i = total_tasks;
+
+		total_tasks ++;
+		
+		//get the time
+		curtime = time (NULL);
+		loctime = localtime (&curtime);
+		strftime(dt, 6, "%d-%m", loctime);
+
+		Task[i].no = i;
+		Task[i].cb = 0;
+		if (dummy_pr) Task[i].pr = dummy_pr;
+		else Task[i].pr = 1;
+		//get entry data
+		sprintf(te_data, "%s", (const char *)elm_entry_entry_get(tk));
+		task_entry = strtok(te_data, "<");
+		if (strcmp(task_entry, "") !=0) strcpy(Task[i].text, task_entry);
+		else strcpy(Task[i].text, "Task");
+		//set current date
+		if (strcmp(dummy_date, "") != 0) strcpy(Task[i].date, dummy_date);
+		else strcpy(Task[i].date, dt);
+		if(strcmp(sel_category, " All Tasks ")==0) strcpy(Task[i].cat, "Personal");
+		else strcpy(Task[i].cat, sel_category);
+		task_list[i] = elm_genlist_item_append(list, &itc1, &Task[i], NULL, ELM_GENLIST_ITEM_NONE,
+							 	 	NULL, NULL);
+		last_rec = -1;
+		//insert record
+		insert_record(i);
+		elm_genlist_item_selected_set(task_list[i], 1);
+	}
 }
 
 void create_cat_hover(void)
 {
-	Evas_Object *bx, *bt;
+	Evas_Object *bt;
 	bt = elm_button_add(win);
 	
 	if (cat_hv_bx) evas_object_del(cat_hv_bx);
@@ -696,8 +688,8 @@ void create_gui(Evas_Object *win)
 {
 	int i;
 	char no[2], *tystr;
-	Evas_Object *bg, *hbox, *new_button, *prop_button, *lb, *hbx;
-	Evas_Object *vbox, *bx, *hbox1, *bt, *fr1, *save_button, *sc;
+	Evas_Object *bg, *hbox, *new_button, *prop_button;
+	Evas_Object *vbox, *bx, *hbox1, *bt, *save_button;
 
 	//add background
 	bg = elm_bg_add(win);
@@ -714,22 +706,14 @@ void create_gui(Evas_Object *win)
 	//add hbox to vbox
 	hbox = elm_box_add(win);
 	elm_box_horizontal_set(hbox, 1);
-	//evas_object_size_hint_max_set(hbox, 440, 640);
 	evas_object_size_hint_weight_set(hbox, 0.0, 0.0);
 	elm_box_pack_end(vbox, hbox);
 	evas_object_show(hbox);
-
-/*	//add a label
-	lb = elm_label_add(win);
-	elm_label_label_set(lb, "Task: ");
-	elm_box_pack_end(hbox, lb);
-	evas_object_show(lb);*/
 	
 	//add hover for priority
 	hv = elm_hover_add(win);
 	//add box for hover
 	bx = elm_box_add(win);
-	//evas_object_size_hint_weight_set(bx, 0.0, 0.0);
 	elm_box_pack_end(hbox, bx);
 	evas_object_show(bx);
 
@@ -945,27 +929,30 @@ void create_new_task(void *data, Evas_Object *obj, void *event_info)
 	curtime = time (NULL);
 	loctime = localtime (&curtime);
 	strftime(dt, 6, "%d-%m", loctime);
+	
 	//get selected task if any
 	Evas_Object *li = data;
 	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(li);
 	if (!item) item = elm_genlist_last_item_get(list);	//insert new line at end of list
 
-	Task[i].key = Task[i-1].key + 1;
 	Task[i].no = i;
 	Task[i].cb = 0;
 	Task[i].pr = 1;
 	strcpy(Task[i].text, "Task");
-	strcpy(Task[i].date, dt);//set current date
+	strcpy(Task[i].date, dt);
 	if(strcmp(sel_category, " All Tasks ")==0) strcpy(Task[i].cat, "Personal");
 	else strcpy(Task[i].cat, sel_category);
-	if(item) { //cater for no items in list
+	if(item) { 
 		task_list[i] = elm_genlist_item_insert_after(list, &itc1, &Task[i], item, ELM_GENLIST_ITEM_NONE,
 								  NULL, NULL);
 	}
+	//cater for no items in list
 	else task_list[i] = elm_genlist_item_append(list, &itc1, &Task[i], NULL, ELM_GENLIST_ITEM_NONE,
 								  NULL, NULL);
 	last_rec = -1;
+	WRITE = 0;
 	//insert record
+	printf("total %d\n", i);
 	insert_record(i);
 	elm_genlist_item_selected_set(task_list[i], 1);
 }
@@ -1026,8 +1013,9 @@ void create_cat_dialog(void *data, Evas_Object *obj, void *event_info)
 
 	//add an entry to hbox
 	entry = elm_entry_add(cat_dialog);
-	evas_object_size_hint_weight_set(entry, 1.0, 0.0);
-	evas_object_size_hint_align_set(entry, -1.0, 0.0);
+	//evas_object_size_hint_weight_set(entry, 1.0, 0.0);
+	//evas_object_size_hint_align_set(entry, -1.0, 0.0);
+	elm_entry_entry_set(entry, "New Cat");
 	elm_entry_single_line_set(entry, 1);
 	elm_entry_editable_set(entry, 1);
 	elm_entry_line_wrap_set(entry, 0);
@@ -1037,15 +1025,13 @@ void create_cat_dialog(void *data, Evas_Object *obj, void *event_info)
 	//add another hbox
 	hbox1 = elm_box_add(cat_dialog);
 	elm_box_horizontal_set(hbox1, 1);
-	evas_object_size_hint_weight_set(hbox1, 1.0, 0.0);
-	evas_object_size_hint_align_set(hbox1, -1.0, 0.0);
+	elm_box_homogenous_set(hbox1, 1);
 	elm_box_pack_end(vbox, hbox1);
 	evas_object_show(hbox1);
 	
 	//add yes button
 	bt = elm_button_add(cat_dialog);
 	elm_button_label_set(bt, "Add");
-	evas_object_size_hint_weight_set(bt, 1.0, 1.0);
 	evas_object_size_hint_align_set(bt, -1.0, -1.0);
 	elm_box_pack_end(hbox1, bt);
 	evas_object_show(bt);
@@ -1054,8 +1040,6 @@ void create_cat_dialog(void *data, Evas_Object *obj, void *event_info)
 	//add close button
 	bt1 = elm_button_add(cat_dialog);
 	elm_button_label_set(bt1, "Cancel");
-	evas_object_size_hint_weight_set(bt1, 1.0, 1.0);
-	evas_object_size_hint_align_set(bt1, -1.0, -1.0);
 	elm_box_pack_end(hbox1, bt1);
 	evas_object_show(bt1);
 	evas_object_smart_callback_add(bt1, "clicked", cat_win_del, cat_dialog);
