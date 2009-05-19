@@ -49,22 +49,14 @@ void first_run(void)
 		  sqlite3_free(err);
 		}
 	}	
-	sql ="CREATE TABLE tasks(key integer primary key, cb integer, priority integer, task text, alarm integer, repeat integer, date integer, category text);";
+	sql ="CREATE TABLE tasks(key integer primary key, cb integer, priority integer, task text, alarm integer, repeat integer, date integer, category text, note text);";
 	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
 	if (db_ret != SQLITE_OK) {
 		if (err != NULL) {
 		  fprintf(stderr, "SQL error: %s\n", err);
 		  sqlite3_free(err);
 		}
-	}	
-	sql ="CREATE TABLE tasks(key integer primary key, cb integer, priority integer, task text, alarm integer, repeat integer, date integer, category text);";
-	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
-	if (db_ret != SQLITE_OK) {
-		if (err != NULL) {
-		  fprintf(stderr, "SQL error: %s\n", err);
-		  sqlite3_free(err);
-		}
-	}	
+	}		
 	sql = "CREATE TABLE category(key integer primary key, category text);";
 	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
 	if (db_ret != SQLITE_OK) {
@@ -155,7 +147,7 @@ void load_data(void)
 
 	elm_genlist_clear(list);
 	//load the data 
-	sql = "SELECT key, cb, priority, task, strftime('%d-%m', date), category FROM tasks ORDER BY priority, date";	
+	sql = "SELECT key, cb, priority, task, strftime('%d-%m', date), category, note FROM tasks ORDER BY priority, date";	
 	db_ret = sqlite3_prepare(tasks, sql, strlen(sql), &stmt, &tail);
 	if(db_ret != SQLITE_OK) {
 		if (strcmp(sqlite3_errmsg(tasks), "no such table: tasks")==0) first_run();
@@ -170,6 +162,7 @@ void load_data(void)
 		if(sqlite3_column_text(stmt, 4)) sprintf(Task[i].date, "%s", sqlite3_column_text(stmt, 4));
 		else sprintf(Task[i].date, "No Date");
 		sprintf(Task[i].cat, "%s", sqlite3_column_text(stmt, 5));
+		if(sqlite3_column_text(stmt, 6)) sprintf(Task[i].note, "%s", sqlite3_column_text(stmt, 6));
 		i++;
 	}
 	sqlite3_finalize(stmt);
@@ -408,4 +401,20 @@ void purge_tasks(void)
 		  sqlite3_free(err);
 	  }
 	}
+}
+
+void save_note(char *data, int i)
+{
+	int db_ret;
+	char *err, *sql;
+	
+	sql = sqlite3_mprintf("UPDATE tasks SET note='%q' WHERE key = %d;", data, Task[i].key);
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+	  if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+	  }
+	}
+	sqlite3_free(sql);
 }

@@ -1,3 +1,11 @@
+/***************************************************************************
+ *            dbus.h
+ *
+ *  Fri Mar  6 12:32:57 2009
+ *  Copyright  2009  nidhin
+ *  <nidhin@nids-laptop.home>
+ ****************************************************************************/
+
 /*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,20 +22,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 
+#include <E_DBus.h>
 #include <Elementary.h>
-#include <string.h>
-#include <time.h>
 
-void create_gui(Evas_Object *win);
-void new_button_clicked(void *data, Evas_Object *obj, void *event_info);
-void create_new_task(void *data, Evas_Object *obj, void *event_info);
-void select_category(void *data, Evas_Object *obj, void *event_info);
-void set_category(void *data, Evas_Object *obj, void *event_info);
-void edit_cat(void);
-void cat_win_del(void *data, Evas_Object *obj, void *event_info);
+void occupy_cpu(void);
+void release_cpu(void);
+void dbus_reply_cb(void *data, DBusMessage *replymsg, DBusError *error);
 
-extern char home_dir[255], sel_category[255];
-extern Evas_Object *list, *hs, *pr_hs, *date_hs, *entry, *hs1, *tk, *hv, *pr_bt, *cat_list, *cat_dialog, *note_win;
-extern Evas_Object *c_pr_bt, *cat_bt, *sel_cat_bt, *date_bt, *det_page, *entry, *win, *cat_hv_bx, *new_button;
-extern int total_tasks, WRITE, last_rec;
-
+E_DBus_Connection *conn;

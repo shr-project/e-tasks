@@ -32,6 +32,7 @@ void del_record(int i);
 void save_state(void);
 void load_data(void);
 void purge_tasks(void);
+void save_note(char *data, int i);
 
 sqlite3 *tasks;
 extern Evas_Object *list, *hs, *hs1, *cat_list, *sel_cat_bt;
@@ -50,5 +51,6 @@ typedef struct{
 	//int repeat;
 	char date[11];
 	char cat[255];
+	char note[255];
 }  _Task;
 extern _Task Task[150];

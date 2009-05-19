@@ -588,13 +588,27 @@ void note_clear(void *data, Evas_Object *obj, void *event_info)
 
 void note_done(void *data, Evas_Object *obj, void *event_info)
 {
-
+	char tystr[255];
+	Evas_Object *en = data;
+	
+	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
+	sprintf(tystr, "%s", elm_entry_entry_get(data));
+	if (strcmp(tystr, "<br>") == 0) strcpy(tystr, "");
+	strcpy(tsk->note, tystr);
+	save_note(tystr, tsk->no);
+	elm_genlist_item_update(item);
+	cat_win_del (note_win, NULL, NULL);
 }
 
 void note_button_clicked(void *data, Evas_Object *obj, void *event_info)
 {
-	Evas_Object *note_win, *bg, *bx, *bx2, *bt, *en;
+	Evas_Object *bg, *bx, *bx2, *bt, *en;
 	char buf[PATH_MAX];
+
+	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	if(!item) return;
+	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
 
 	note_win = elm_win_add(NULL, "note", ELM_WIN_BASIC);
 	elm_win_title_set(note_win, "Note");
@@ -615,6 +629,8 @@ void note_button_clicked(void *data, Evas_Object *obj, void *event_info)
 	evas_object_size_hint_weight_set(en, 1.0, 1.0);
 	evas_object_size_hint_align_set(en, -1.0, -1.0);
 	elm_box_pack_end(bx, en);
+	elm_entry_entry_set(en, tsk->note);
+
 	evas_object_show(en);
 
 	bx2 = elm_box_add(note_win);
@@ -732,7 +748,15 @@ Evas_Object *gl_icon_get(const void *data, Evas_Object *obj, const char *part)
 
 		bx = elm_box_add(obj);
 		elm_box_horizontal_set(bx, 1);
-		 
+
+		 if(strcmp(tsk->note, "") !=0) {
+			ic= elm_icon_add(obj);
+			snprintf(buf, sizeof(buf), "/usr/share/e-tasks/exclaim.png");
+			elm_icon_file_set(ic, buf, NULL);
+			elm_icon_scale_set(ic, 0, 0);
+			evas_object_show(ic);
+			elm_box_pack_end(bx, ic);
+		 }
 		if(strcmp(tsk->date, "No Date")!=0) {
 			cur_t = tmp_t = time(NULL);
 			tm = localtime(&tmp_t);
