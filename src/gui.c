@@ -245,8 +245,12 @@ void det_page_done(void *data, Evas_Object *obj, void *event_info)
 	if(WRITE) {
 		WRITE = 0;
 		update_record (tsk->no);
-		elm_genlist_item_update(task_list[tsk->no]);
+		Elm_Genlist_Item *item;
+		item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+		if(item) elm_genlist_item_update(task_list[tsk->no]);
 		last_rec = -1;
+		item = elm_genlist_first_item_get(list);
+		if(item) elm_genlist_item_selected_set(item ,1);
 	}
 	cat_win_del(det_page, NULL, NULL);
 }
@@ -477,7 +481,7 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
  	elm_table_pack(tb, fr1, 0, 5, 3, 1);
 	evas_object_show(fr1);
 	
-	//add yes button
+	//add dome button
 	bt_done = elm_button_add(det_page);
 	elm_button_label_set(bt_done, "Done");
 	evas_object_size_hint_weight_set(bt_done, 1.0, 0.0);
@@ -486,7 +490,7 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	evas_object_show(bt_done);
 	evas_object_smart_callback_add(bt_done, "clicked", det_page_done, (_Task *)tsk);
 	
-	//add yes button
+	//add del button
 	bt = elm_button_add(det_page);
 	elm_button_label_set(bt, "Delete");
 	evas_object_size_hint_weight_set(bt, 1.0, 0.0);
