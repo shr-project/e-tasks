@@ -31,6 +31,7 @@ void add_category(char * cat);
 void del_record(int i);
 void save_state(void);
 void load_data(void);
+void purge_tasks(void);
 
 sqlite3 *tasks;
 extern Evas_Object *list, *hs, *hs1, *cat_list, *sel_cat_bt;

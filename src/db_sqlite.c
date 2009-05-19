@@ -394,3 +394,18 @@ void add_category(char * cat)
 	}
 	sqlite3_free(sql);
 }
+
+void purge_tasks(void)
+{
+	int db_ret;
+	char *err, *sql;
+	
+	sql = "DELETE FROM tasks WHERE cb = 1;";
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+	  if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+	  }
+	}
+}

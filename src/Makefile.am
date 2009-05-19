@@ -24,7 +24,9 @@ tasks_SOURCES = \
 	gui.c \
 	gui.h \
 	db_sqlite.c \
-	db_sqlite.h
+	db_sqlite.h \
+	dbus-stuff.c \
+	dbus-stuff.h
 
 tasks_LDFLAGS = \
 	-Wl,--export-dynamic

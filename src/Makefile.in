@@ -47,7 +47,7 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(gladedir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_tasks_OBJECTS = callbacks.$(OBJEXT) main.$(OBJEXT) gui.$(OBJEXT) \
-	db_sqlite.$(OBJEXT)
+	db_sqlite.$(OBJEXT) dbus-stuff.$(OBJEXT)
 tasks_OBJECTS = $(am_tasks_OBJECTS)
 am__DEPENDENCIES_1 =
 tasks_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -317,6 +317,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/db_sqlite.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gui.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dbus-stuff.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

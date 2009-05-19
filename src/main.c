@@ -22,13 +22,14 @@
 #include <fcntl.h>
 #include <pthread.h>
 #include <string.h>
+#include "dbus-stuff.h"
 #include "gui.h"
 #include "db_sqlite.h"
 
 char home_dir[255], sel_category[255];
 Elm_Genlist_Item *task_list[500];
 Evas_Object *list, *hs, *pr_hs, *date_hs, *entry, *hs1, *tk, *hv, *pr_bt, *cat_list, *win, *cat_hv_bx;
-Evas_Object *c_pr_bt, *cat_dialog, *cat_bt, *sel_cat_bt, *date_bt, *det_page, *entry;
+Evas_Object *c_pr_bt, *cat_dialog, *cat_bt, *sel_cat_bt, *date_bt, *det_page, *entry, *new_button;
 int total_tasks, WRITE=0, last_rec= -1;
 
 //TODO : dynamic memory management
@@ -38,6 +39,7 @@ static void
 my_win_del(void *data, Evas_Object *obj, void *event_info)
 {
 	save_state();
+	release_cpu();
 	elm_exit();
 }
 
@@ -74,7 +76,7 @@ elm_main(int argc, char **argv)
 	//restore state
 	restore_state();
 
-	//occupy_cpu();
+	occupy_cpu();
 
 	elm_run();
 	//clean up stuff

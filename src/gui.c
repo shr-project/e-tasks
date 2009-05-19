@@ -50,6 +50,11 @@ void select_category(void *data, Evas_Object *obj, void *event_info)
 		edit_cat();
 		return;
 	}
+	if(strcmp(cat, "Deleted") ==0) {
+		elm_button_label_set(new_button, "Purge");
+	}
+	else  elm_button_label_set(new_button, "Add");
+
 	elm_button_label_set(sel_cat_bt, cat);
 	strcpy(sel_category, cat);
 	elm_genlist_clear(list);
@@ -575,6 +580,87 @@ void save_button_clicked(void *data, Evas_Object *obj, void *event_info)
 	}
 }
 
+void note_clear(void *data, Evas_Object *obj, void *event_info)
+{
+	Evas_Object *en = data;
+	elm_entry_entry_set(en, "");
+}
+
+void note_done(void *data, Evas_Object *obj, void *event_info)
+{
+
+}
+
+void note_button_clicked(void *data, Evas_Object *obj, void *event_info)
+{
+	Evas_Object *note_win, *bg, *bx, *bx2, *bt, *en;
+	char buf[PATH_MAX];
+
+	note_win = elm_win_add(NULL, "note", ELM_WIN_BASIC);
+	elm_win_title_set(note_win, "Note");
+	elm_win_autodel_set(note_win, 1);
+
+	bg = elm_bg_add(note_win);
+	elm_win_resize_object_add(note_win, bg);
+	evas_object_size_hint_weight_set(bg, 1.0, 1.0);
+	evas_object_show(bg);
+
+	bx = elm_box_add(note_win);
+	evas_object_size_hint_weight_set(bx, 1.0, 1.0);
+	elm_win_resize_object_add(note_win, bx);
+	evas_object_show(bx);
+
+	en = elm_entry_add(note_win);
+	elm_entry_line_wrap_set(en, 0);
+	evas_object_size_hint_weight_set(en, 1.0, 1.0);
+	evas_object_size_hint_align_set(en, -1.0, -1.0);
+	elm_box_pack_end(bx, en);
+	evas_object_show(en);
+
+	bx2 = elm_box_add(note_win);
+	elm_box_horizontal_set(bx2, 1);
+	evas_object_size_hint_weight_set(bx2, 1.0, 0.0);
+	evas_object_size_hint_align_set(bx2, -1.0, -1.0);
+
+	bt = elm_button_add(note_win);
+	elm_button_label_set(bt, "Clear");
+	evas_object_smart_callback_add(bt, "clicked", note_clear, en);
+	evas_object_size_hint_align_set(bt, -1.0, -1.0);
+	evas_object_size_hint_weight_set(bt, 1.0, 0.0);
+	elm_box_pack_end(bx2, bt);
+	evas_object_show(bt);
+
+	//bt = elm_button_add(note_win);
+	//elm_button_label_set(bt, "Save");
+	//evas_object_smart_callback_add(bt, "clicked", my_entry_bt_2, en);
+	//evas_object_size_hint_align_set(bt, -1.0, -1.0);
+	//evas_object_size_hint_weight_set(bt, 1.0, 0.0);
+	//elm_box_pack_end(bx2, bt);
+	//evas_object_show(bt);
+
+	bt = elm_button_add(note_win);
+	elm_button_label_set(bt, "Cancel");
+	evas_object_smart_callback_add(bt, "clicked", cat_win_del, note_win);
+	evas_object_size_hint_align_set(bt, -1.0, -1.0);
+	evas_object_size_hint_weight_set(bt, 1.0, 0.0);
+	elm_box_pack_end(bx2, bt);
+	evas_object_show(bt);
+
+	bt = elm_button_add(note_win);
+	elm_button_label_set(bt, "Done");
+	evas_object_smart_callback_add(bt, "clicked", note_done, en);
+	evas_object_size_hint_align_set(bt, -1.0, -1.0);
+	evas_object_size_hint_weight_set(bt, 1.0, 0.0);
+	elm_box_pack_end(bx2, bt);
+	evas_object_show(bt);
+	
+	elm_box_pack_end(bx, bx2);
+	evas_object_show(bx2);
+
+	evas_object_show(note_win);
+	evas_object_resize(note_win, 480, 640);
+}
+
 void create_cat_hover(void)
 {
 	Evas_Object *bt;
@@ -692,8 +778,8 @@ void create_gui(Evas_Object *win)
 {
 	int i;
 	char no[2], *tystr;
-	Evas_Object *bg, *hbox, *new_button, *prop_button;
-	Evas_Object *vbox, *bx, *hbox1, *bt, *save_button;
+	Evas_Object *bg, *hbox, *prop_button, *hbx, *sc;
+	Evas_Object *vbox, *bx, *hbox1, *bt, *save_button, *note_button;
 
 	//add background
 	bg = elm_bg_add(win);
@@ -701,7 +787,7 @@ void create_gui(Evas_Object *win)
 	evas_object_size_hint_weight_set(bg, 1.0, 1.0);
 	evas_object_show(bg);
 
-	//add vbox 4
+	//add vbox
 	vbox = elm_box_add(win);
 	elm_win_resize_object_add(win, vbox);
 	evas_object_size_hint_weight_set(vbox, 1.0, 1.0);
@@ -711,6 +797,7 @@ void create_gui(Evas_Object *win)
 	hbox = elm_box_add(win);
 	elm_box_horizontal_set(hbox, 1);
 	evas_object_size_hint_weight_set(hbox, 0.0, 0.0);
+	//evas_object_size_hint_align_set(hbox, 0.0, 0.0);
 	elm_box_pack_end(vbox, hbox);
 	evas_object_show(hbox);
 	
@@ -774,38 +861,29 @@ void create_gui(Evas_Object *win)
 	add_hs_items (win, bx, bt, 0);
 	evas_object_show(bx);
 	elm_hover_content_set(hs, "bottom", bx); */
-
-/*	//add box for scroller
-	hbx = elm_box_add(win);
-	elm_box_horizontal_set(hbx, 1);
-	//evas_object_size_hint_max_set(hbox, 220, 640);
-	evas_object_size_hint_weight_set(hbx, 0.0, 0.0);
-	elm_box_pack_end(hbox, hbx);
-	evas_object_show(hbx);
 	
 	//add scroller for entry
 	sc = elm_scroller_add(win);
 	elm_scroller_content_min_limit(sc, 1, 1);
 	//elm_scroller_policy_set(sc, ELM_SCROLLER_POLICY_OFF, ELM_SCROLLER_POLICY_OFF);
-	evas_object_size_hint_weight_set(sc, 1.0, 0.5);
-	//evas_object_size_hint_align_set(sc, -1.0, -1.0);
-	evas_object_size_hint_max_set(sc, 220, 640);
-	elm_box_pack_end(hbx, sc);*/
+	evas_object_size_hint_weight_set(sc, 0.0, 0.0);
+	//evas_object_size_hint_align_set(sc, 0.0, -1.0);
+	evas_object_size_hint_max_set(sc, 300, 640);
+	//evas_object_size_hint_min_set(sc, 300, 640);
+	elm_box_pack_end(hbox, sc);
 	
 	//add entry for task
 	tk = elm_entry_add(win);
-	elm_entry_line_wrap_set(tk, 0);
-	elm_entry_entry_set(tk, "Task");
-	elm_entry_select_all(tk);
-	//evas_object_size_hint_weight_set(tk, 1.0, 0.0);
-	//evas_object_size_hint_align_set(tk, -1.0, 0.0);
-	//evas_object_size_hint_max_set(tk, 220, 640);
 	elm_entry_single_line_set(tk ,1);
-	elm_box_pack_end(hbox, tk);
-	//elm_scroller_content_set(sc, tk);
+	elm_entry_entry_set(tk, "Task");
+	evas_object_size_hint_weight_set(tk, 0.0, 0.0);
+	//evas_object_size_hint_align_set(tk, 0.0, 0.0);
+
+	//elm_box_pack_end(hbox, tk);
+	elm_scroller_content_set(sc, tk);
 	evas_object_show(tk);
-	//evas_object_show(sc);
-	
+	evas_object_show(sc);
+
 	//add hover for date
 	date_hs = elm_hover_add(win);
 	//add box for hover
@@ -864,7 +942,6 @@ void create_gui(Evas_Object *win)
 	evas_object_size_hint_weight_set(hbox1, 1.0, 0.0);
 	evas_object_size_hint_align_set(hbox1, -1.0, 0.0);
 	elm_box_pack_end(vbox, hbox1);
-	elm_box_homogenous_set(hbox1, 1);
 	evas_object_show(hbox1);
 
 	//add new button to the hbox
@@ -886,13 +963,13 @@ void create_gui(Evas_Object *win)
 	evas_object_smart_callback_add(prop_button, "clicked", create_details_page, NULL);
 
 	//add note button to the hbox
-	//note_button = elm_button_add(win);
-	//elm_button_label_set(note_button, "Note");
-	//evas_object_size_hint_weight_set(note_button, 1.0, 1.0);
-	//evas_object_size_hint_align_set(note_button, -1.0, -1.0);
-	//elm_box_pack_end(hbox1, note_button);
-	//evas_object_show(note_button);
-	//evas_object_smart_callback_add(note_button, "clicked", note_button_clicked, list);
+	note_button = elm_button_add(win);
+	elm_button_label_set(note_button, "Note");
+	evas_object_size_hint_weight_set(note_button, 1.0, 1.0);
+	evas_object_size_hint_align_set(note_button, -1.0, -1.0);
+	elm_box_pack_end(hbox1, note_button);
+	evas_object_show(note_button);
+	evas_object_smart_callback_add(note_button, "clicked", note_button_clicked, list);
 
 	//add hover for category select
 	hs1 = elm_hover_add(win);
@@ -925,6 +1002,11 @@ void create_new_task(void *data, Evas_Object *obj, void *event_info)
 	int i = total_tasks;
 	total_tasks ++;
 
+	if(strcmp(sel_category, "Deleted") == 0) {
+		purge_tasks();
+		elm_genlist_clear(list);
+		return;
+	}
 	time_t curtime;
 	struct tm *loctime;
 	char dt[6];
