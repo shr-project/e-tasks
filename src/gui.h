@@ -27,7 +27,7 @@ void edit_cat(void);
 void cat_win_del(void *data, Evas_Object *obj, void *event_info);
 
 extern char home_dir[255], sel_category[255];
-extern Evas_Object *list, *hs, *pr_hs, *date_hs, *entry, *hs1, *tk, *hv, *pr_bt, *cat_list, *cat_dialog, *note_win;
+extern Evas_Object *list, *hs, *pr_hs, *date_hs, *entry, *hs1, *tk, *hv, *pr_bt, *cat_list, *cat_dialog, *note_win, *note_entry;
 extern Evas_Object *c_pr_bt, *cat_bt, *sel_cat_bt, *date_bt, *det_page, *entry, *win, *cat_hv_bx, *new_button;
 extern int total_tasks, WRITE, last_rec;
 

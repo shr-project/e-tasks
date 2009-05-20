@@ -240,10 +240,18 @@ void det_page_done(void *data, Evas_Object *obj, void *event_info)
 {
 	char te_data[255], *task_entry;
 	_Task *tsk = (_Task *)data;
+	
 	sprintf(te_data, "%s", (const char *)elm_entry_entry_get(entry));
 	task_entry = strtok(te_data, "<");
 	if(strcmp(task_entry, tsk->text)!=0) {
 		sprintf(tsk->text, "%s", task_entry);
+		WRITE = 1;
+	}
+
+	sprintf(te_data, "%s", (const char *)elm_entry_entry_get(note_entry));
+	task_entry = strtok(te_data, "<");
+	if(strcmp(task_entry, tsk->note)!=0) {
+		sprintf(tsk->note, "%s", task_entry);
 		WRITE = 1;
 	}
 	
@@ -478,20 +486,42 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	evas_object_show(bx);
 	elm_hover_content_set(c_date_hs, "bottom", bx);
 
+	//add a label 
+	lb = elm_label_add(det_page);
+	elm_label_label_set(lb,"Note:");
+	evas_object_size_hint_align_set(lb, 1.0, 0.5);
+ 	elm_table_pack(tb, lb, 0, 5, 1, 1);
+	evas_object_show(lb);
+
+	//add an entry 
+	note_entry = elm_entry_add(det_page);
+	elm_entry_single_line_set(note_entry, 1);
+	elm_entry_editable_set(note_entry, 1);
+	if(strcmp(tsk->note, "") != 0) elm_entry_entry_set(note_entry, tsk->note);
+	else elm_entry_entry_set(note_entry, "Note"); 
+	elm_entry_line_wrap_set(note_entry, 0);
+ 	elm_table_pack(tb, note_entry, 1, 5, 2, 1);
+	evas_object_show(note_entry);
+
+	/*lb = elm_label_add(det_page);
+	elm_label_label_set(lb,"Note:");
+ 	elm_table_pack(tb, lb, 1, 5, 2, 1);
+	evas_object_show(lb);*/
+	
 	//add a frame 
 	fr1 = elm_frame_add(det_page);
 	elm_frame_style_set(fr1, "outdent_bottom");
 	evas_object_size_hint_weight_set(fr1, -1.0, 0.0);
 	evas_object_size_hint_align_set(fr1, -1.0, -1.0);
- 	elm_table_pack(tb, fr1, 0, 5, 3, 1);
+ 	elm_table_pack(tb, fr1, 0, 6, 3, 1);
 	evas_object_show(fr1);
 	
-	//add dome button
+	//add done button
 	bt_done = elm_button_add(det_page);
 	elm_button_label_set(bt_done, "Done");
 	evas_object_size_hint_weight_set(bt_done, 1.0, 0.0);
 	evas_object_size_hint_align_set(bt_done, -1.0, -1.0);
- 	elm_table_pack(tb, bt_done, 0, 6, 1, 1);
+ 	elm_table_pack(tb, bt_done, 0, 7, 1, 1);
 	evas_object_show(bt_done);
 	evas_object_smart_callback_add(bt_done, "clicked", det_page_done, (_Task *)tsk);
 	
@@ -500,7 +530,7 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	elm_button_label_set(bt, "Delete");
 	evas_object_size_hint_weight_set(bt, 1.0, 0.0);
 	evas_object_size_hint_align_set(bt, -1.0, -1.0);
- 	elm_table_pack(tb, bt, 1, 6, 1, 1);
+ 	elm_table_pack(tb, bt, 1, 7, 1, 1);
 	evas_object_show(bt);
 	evas_object_smart_callback_add(bt, "clicked", det_page_del, (_Task *)tsk);
 
@@ -518,7 +548,7 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	evas_object_size_hint_weight_set(bt, 1.0, 0.0);
 	evas_object_size_hint_align_set(bt, -1.0, -1.0);
 	elm_button_label_set(bt, "Cancel");
- 	elm_table_pack(tb, bt, 2, 6, 1, 1);
+ 	elm_table_pack(tb, bt, 2, 7, 1, 1);
 	evas_object_show(bt);
 	evas_object_smart_callback_add(bt, "clicked", cat_win_del, det_page);
 	
@@ -751,7 +781,7 @@ Evas_Object *gl_icon_get(const void *data, Evas_Object *obj, const char *part)
 
 		 if(strcmp(tsk->note, "") !=0) {
 			ic= elm_icon_add(obj);
-			snprintf(buf, sizeof(buf), "/usr/share/e-tasks/exclaim.png");
+			snprintf(buf, sizeof(buf), "/usr/share/e-tasks/note.png");
 			elm_icon_file_set(ic, buf, NULL);
 			elm_icon_scale_set(ic, 0, 0);
 			evas_object_show(ic);
@@ -801,8 +831,8 @@ void gl_del(const void *data, Evas_Object *obj)
 void create_gui(Evas_Object *win)
 {
 	int i;
-	char no[2], *tystr;
-	Evas_Object *bg, *hbox, *prop_button, *hbx, *sc;
+	char no[2], *tystr, buf[255];
+	Evas_Object *bg, *hbox, *prop_button, *hbx, *sc, *ic;
 	Evas_Object *vbox, *bx, *hbox1, *bt, *save_button, *note_button;
 
 	//add background
@@ -890,8 +920,8 @@ void create_gui(Evas_Object *win)
 	sc = elm_scroller_add(win);
 	elm_scroller_content_min_limit(sc, 1, 1);
 	//elm_scroller_policy_set(sc, ELM_SCROLLER_POLICY_OFF, ELM_SCROLLER_POLICY_OFF);
-	evas_object_size_hint_weight_set(sc, 0.0, 0.0);
-	//evas_object_size_hint_align_set(sc, 0.0, -1.0);
+	evas_object_size_hint_weight_set(sc, 0.0, 1.0);
+	evas_object_size_hint_align_set(sc, 0.0, -1.0);
 	evas_object_size_hint_max_set(sc, 300, 640);
 	//evas_object_size_hint_min_set(sc, 300, 640);
 	elm_box_pack_end(hbox, sc);
@@ -900,9 +930,8 @@ void create_gui(Evas_Object *win)
 	tk = elm_entry_add(win);
 	elm_entry_single_line_set(tk ,1);
 	elm_entry_entry_set(tk, "Task");
-	evas_object_size_hint_weight_set(tk, 0.0, 0.0);
-	//evas_object_size_hint_align_set(tk, 0.0, 0.0);
-
+	evas_object_size_hint_weight_set(tk, 0.0, 1.0);
+	evas_object_size_hint_align_set(tk, 0.0, -1.0);
 	//elm_box_pack_end(hbox, tk);
 	elm_scroller_content_set(sc, tk);
 	evas_object_show(tk);
@@ -988,7 +1017,13 @@ void create_gui(Evas_Object *win)
 
 	//add note button to the hbox
 	note_button = elm_button_add(win);
-	elm_button_label_set(note_button, "Note");
+	ic = elm_icon_add(win);
+	snprintf(buf, sizeof(buf), "/usr/share/e-tasks/note_butt.png");
+	elm_icon_file_set(ic, buf, NULL);
+	evas_object_size_hint_aspect_set(ic, EVAS_ASPECT_CONTROL_VERTICAL, 1, 1);
+	elm_button_icon_set(note_button, ic);
+	evas_object_show(ic);
+	//elm_button_label_set(note_button, "Note");
 	evas_object_size_hint_weight_set(note_button, 1.0, 1.0);
 	evas_object_size_hint_align_set(note_button, -1.0, -1.0);
 	elm_box_pack_end(hbox1, note_button);

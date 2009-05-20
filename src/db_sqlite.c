@@ -138,6 +138,22 @@ void save_state(void)
 	sqlite3_free(sql);
 }
 
+void amend_tasks_table(void)
+{
+	int db_ret;
+	char *err, *sql;
+	
+	sql = sqlite3_mprintf("ALTER TABLE tasks add column note text;");
+	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
+	if (db_ret != SQLITE_OK) {
+	  if (err != NULL) {
+		  fprintf(stderr, "SQL error: %s\n", err);
+		  sqlite3_free(err);
+	  }
+	}
+	sqlite3_free(sql);
+}
+
 void load_data(void)
 {
 	int db_ret, i=1;
@@ -151,7 +167,9 @@ void load_data(void)
 	db_ret = sqlite3_prepare(tasks, sql, strlen(sql), &stmt, &tail);
 	if(db_ret != SQLITE_OK) {
 		if (strcmp(sqlite3_errmsg(tasks), "no such table: tasks")==0) first_run();
+		if (strcmp(sqlite3_errmsg(tasks), "no such column: note")==0) amend_tasks_table();
 		printf("SQL error: %d %s\n", db_ret, sqlite3_errmsg(tasks));
+		db_ret = sqlite3_prepare(tasks, sql, strlen(sql), &stmt, &tail);
 	}
 	while((db_ret = sqlite3_step(stmt)) == SQLITE_ROW) {
 		Task[i].no = i;
@@ -163,6 +181,7 @@ void load_data(void)
 		else sprintf(Task[i].date, "No Date");
 		sprintf(Task[i].cat, "%s", sqlite3_column_text(stmt, 5));
 		if(sqlite3_column_text(stmt, 6)) sprintf(Task[i].note, "%s", sqlite3_column_text(stmt, 6));
+		else strcpy(Task[i].note, "");
 		i++;
 	}
 	sqlite3_finalize(stmt);

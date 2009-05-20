@@ -29,7 +29,7 @@
 char home_dir[255], sel_category[255];
 Elm_Genlist_Item *task_list[500];
 Evas_Object *list, *hs, *pr_hs, *date_hs, *entry, *hs1, *tk, *hv, *pr_bt, *cat_list, *win, *cat_hv_bx, *note_win;
-Evas_Object *c_pr_bt, *cat_dialog, *cat_bt, *sel_cat_bt, *date_bt, *det_page, *entry, *new_button;
+Evas_Object *c_pr_bt, *cat_dialog, *cat_bt, *sel_cat_bt, *date_bt, *det_page, *entry, *new_button, *note_entry;
 int total_tasks, WRITE=0, last_rec= -1;
 
 //TODO : dynamic memory management
