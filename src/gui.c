@@ -624,7 +624,7 @@ void note_clear(void *data, Evas_Object *obj, void *event_info)
 void note_done(void *data, Evas_Object *obj, void *event_info)
 {
 	char tystr[255];
-	Evas_Object *en = data;
+	//Evas_Object *en = data;
 	
 	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
 	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
@@ -639,7 +639,7 @@ void note_done(void *data, Evas_Object *obj, void *event_info)
 void note_button_clicked(void *data, Evas_Object *obj, void *event_info)
 {
 	Evas_Object *bg, *bx, *bx2, *bt, *en;
-	char buf[PATH_MAX];
+	//char buf[PATH_MAX];
 
 	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
 	if(!item) return;
@@ -837,7 +837,7 @@ void create_gui(Evas_Object *win)
 {
 	int i;
 	char no[2], *tystr, buf[255];
-	Evas_Object *bg, *hbox, *prop_button, *hbx, *sc, *ic, *bx1;
+	Evas_Object *bg, *hbox, *prop_button, *sc, *ic, *bx1;
 	Evas_Object *vbox, *bx, *hbox1, *bt, *save_button, *note_button;
 
 	//add background
@@ -961,7 +961,7 @@ void create_gui(Evas_Object *win)
 	evas_object_smart_callback_add(list, "selected", task_select, list);
 
 	//genlist class defs
-	itc1.item_style     		= "default";
+	itc1.item_style     	= "default";
 	itc1.func.label_get 	= gl_label_get;
 	itc1.func.icon_get  	= gl_icon_get;
 	itc1.func.state_get 	= gl_state_get;

@@ -95,6 +95,7 @@ gui.o: gui.c gui.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/Eina.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_types.h \
+  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_main.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_f16p16.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/stdint.h \
@@ -103,7 +104,6 @@ gui.o: gui.c gui.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inline_rectangle.x \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inlist.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_iterator.h \
-  /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_magic.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_accessor.h \
   /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_file.h \
@@ -364,6 +364,8 @@ gui.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_types.h:
 
+/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h:
+
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_main.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_f16p16.h:
@@ -379,8 +381,6 @@ gui.h:
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_inlist.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_iterator.h:
-
-/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina_config.h:
 
 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/include/eina-0/eina/eina_magic.h:
 
