@@ -824,7 +824,7 @@ Evas_Object *gl_icon_get(const void *data, Evas_Object *obj, const char *part)
 	return NULL;
 }
 
-Evas_Bool gl_state_get(const void *data, Evas_Object *obj, const char *part)
+Eina_Bool gl_state_get(const void *data, Evas_Object *obj, const char *part)
 {
    return 0;
 }
@@ -1214,7 +1214,7 @@ Evas_Object *cat_icon_get(const void *data, Evas_Object *obj, const char *part)
 	return NULL;
 }
 
-Evas_Bool cat_state_get(const void *data, Evas_Object *obj, const char *part)
+Eina_Bool cat_state_get(const void *data, Evas_Object *obj, const char *part)
 {
    return 0;
 }
