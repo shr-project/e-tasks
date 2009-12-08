@@ -27,6 +27,7 @@
 
 void occupy_cpu(void)
 {	
+	e_dbus_init();
 	conn = e_dbus_bus_get(DBUS_BUS_SYSTEM);
 	
 	DBusMessage *msg;

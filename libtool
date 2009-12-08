@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # libtool - Provide generalized library-building support services.
 # Generated automatically by config.status (tasks) 0.10
@@ -55,9 +55,9 @@ pic_mode=default
 fast_install=yes
 
 # The host system.
-host_alias=arm-angstrom-linux-gnueabi
-host=arm-angstrom-linux-gnueabi
-host_os=linux-gnueabi
+host_alias=
+host=x86_64-unknown-linux-gnu
+host_os=linux-gnu
 
 # The build system.
 build_alias=
@@ -80,7 +80,7 @@ EGREP="/bin/grep -E"
 FGREP="/bin/grep -F"
 
 # A BSD- or MS-compatible name lister.
-NM="/usr/local/openmoko/arm/bin/arm-angstrom-linux-gnueabi-nm -B"
+NM="/usr/bin/nm -B"
 
 # Whether we need soft or hard links.
 LN_S="ln -s"
@@ -108,7 +108,7 @@ reload_flag=" -r"
 reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 
 # An object symbol dumper.
-OBJDUMP="arm-angstrom-linux-gnueabi-objdump"
+OBJDUMP="objdump"
 
 # Method to check whether dependent libraries are shared objects.
 deplibs_check_method="pass_all"
@@ -117,22 +117,22 @@ deplibs_check_method="pass_all"
 file_magic_cmd="\$MAGIC_CMD"
 
 # The archiver.
-AR="arm-angstrom-linux-gnueabi-ar"
+AR="ar"
 AR_FLAGS="cru"
 
 # A symbol stripping program.
-STRIP="arm-angstrom-linux-gnueabi-strip"
+STRIP="strip"
 
 # Commands used to install an old-style archive.
-RANLIB="arm-angstrom-linux-gnueabi-ranlib"
+RANLIB="ranlib"
 old_postinstall_cmds="chmod 644 \$oldlib~\$RANLIB \$oldlib"
 old_postuninstall_cmds=""
 
 # A C compiler.
-LTCC="ccache arm-angstrom-linux-gnueabi-gcc -march=armv4t -mtune=arm920t"
+LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-isystem/usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/include -fexpensive-optimizations -fomit-frame-pointer -frename-registers -O2"
+LTCFLAGS="-g -O2"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 \\2 \\2/p'"
@@ -150,7 +150,7 @@ global_symbol_to_c_name_address_lib_prefix="sed -n -e 's/^: \\([^ ]*\\) \$/  {\\
 objdir=.libs
 
 # Shell to use when invoking shell scripts.
-SHELL="/bin/bash"
+SHELL="/bin/sh"
 
 # An echo program that does not interpret backslashes.
 ECHO="echo"
@@ -234,7 +234,7 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/usr/local/openmoko/arm/lib/gcc/arm-angstrom-linux-gnueabi/4.1.2 /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/lib /usr/local/openmoko/arm/arm-angstrom-linux-gnueabi/usr/lib"
+sys_lib_search_path_spec="/usr/lib/gcc/x86_64-linux-gnu/4.4.1 /usr/lib /lib /usr/lib/x86_64-linux-gnu"
 
 # Run-time system search path for libraries.
 sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib32/alsa-lib /usr/lib/alsa-lib /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu "
@@ -249,18 +249,18 @@ dlopen_self=unknown
 dlopen_self_static=unknown
 
 # Commands to strip libraries.
-old_striplib="arm-angstrom-linux-gnueabi-strip --strip-debug"
-striplib="arm-angstrom-linux-gnueabi-strip --strip-unneeded"
+old_striplib="strip --strip-debug"
+striplib="strip --strip-unneeded"
 
 
 # The linker used to build libraries.
-LD="arm-angstrom-linux-gnueabi-ld"
+LD="/usr/bin/ld -m elf_x86_64"
 
 # Commands used to build an old-style archive.
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$oldlib"
 
 # A language specific compiler.
-CC="ccache arm-angstrom-linux-gnueabi-gcc -march=armv4t -mtune=arm920t"
+CC="gcc"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes
@@ -361,7 +361,7 @@ hardcode_automatic=no
 inherit_rpath=no
 
 # Whether libtool must link a program against all its dependency libraries.
-link_all_deplibs=unknown
+link_all_deplibs=no
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""

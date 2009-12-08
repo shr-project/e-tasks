@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Tasks
+Comment=Task Manager
+Exec=tasks
+Icon=e-tasks
+Terminal=false
+Type=Application
+Categories=Application;Utility;

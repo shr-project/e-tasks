@@ -831,6 +831,7 @@ Eina_Bool gl_state_get(const void *data, Evas_Object *obj, const char *part)
 
 void gl_del(const void *data, Evas_Object *obj)
 {
+	return 0;
 }
 
 void create_gui(Evas_Object *win)
