@@ -3,7 +3,7 @@
 
 SUBDIRS = src po
 
-tasksdocdir = ${prefix}/doc/e-tasks
+tasksdocdir = ${datadir}/doc/e-tasks
 tasksdoc_DATA = \
 	README\
 	COPYING\

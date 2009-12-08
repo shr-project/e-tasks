@@ -2,9 +2,6 @@
 
 ## Created by Anjuta
 
-gladedir = $(datadir)/tasks/glade
-glade_DATA = tasks.glade
-
 AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
@@ -33,9 +30,5 @@ tasks_LDFLAGS = \
 
 tasks_LDADD = $(TASKS_LIBS)
 
-EXTRA_DIST = $(glade_DATA)
-
-# Remove glade directory on uninstall
 uninstall-local:
-	-rm -r $(gladedir)
 	-rm -r $(datadir)/tasks
