@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl Created by Anjuta application wizard.
 
-AC_INIT(tasks, 0.10)
+AC_INIT(e-tasks, 0.23)
 
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 AC_CONFIG_HEADERS([config.h])
@@ -20,5 +20,4 @@ PKG_CHECK_MODULES(TASKS, [elementary eina-0 dbus-1 sqlite3])
 AC_OUTPUT([
 Makefile
 src/Makefile
-po/Makefile.in
 ])

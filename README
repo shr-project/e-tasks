@@ -1,0 +1,10 @@
+About:
+------
+
+ e-tasks is a todo program.
+
+Requirements:
+-------------
+
+ elementary
+ sqlite3
