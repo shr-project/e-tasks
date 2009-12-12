@@ -1,5 +1,5 @@
 /***************************************************************************
- *            dbus.c
+ *            dbus-stuff.c
  *
  *  Copyright  2009  cchandel
  *  <cchandel@yahoo.com>

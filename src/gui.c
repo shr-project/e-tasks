@@ -176,7 +176,7 @@ void task_cb_changed(void *data, Evas_Object *obj, void *event_info)
 void add_dates(Evas_Object *win, Evas_Object *bx, Evas_Object *bt)
 {
 	int i;
-	char dt[6], *tystr;
+	char dt[10], *tystr;
 	time_t curtime, tm;
 	struct tm *loctime;
 	
@@ -284,7 +284,7 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	Evas_Object *bg, *tb, *lb, *bt;
 	Evas_Object *det_hv, *bx, *c_date_hs, *c_date_bt, *fr1, *fr, *bt_done;
 	int i;
-	char no[2], dt[6];
+	char no[2], dt[10];
 	static Details det[15];
 	time_t curtime, tm;
 	struct tm *loctime;
@@ -313,7 +313,7 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	
 	//add a frame 
 	fr = elm_frame_add(det_page);
-	elm_frame_style_set(fr, "outdent_top");
+	elm_object_style_set(fr, "outdent_top");
 	evas_object_size_hint_align_set(fr, 0.5, -1.0);
  	elm_table_pack(tb, fr, 0, 0, 3, 1);
 	evas_object_show(fr);
@@ -515,7 +515,7 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	
 	//add a frame 
 	fr1 = elm_frame_add(det_page);
-	elm_frame_style_set(fr1, "outdent_bottom");
+	elm_object_style_set(fr1, "outdent_bottom");
 	evas_object_size_hint_weight_set(fr1, -1.0, 0.0);
 	evas_object_size_hint_align_set(fr1, -1.0, -1.0);
  	elm_table_pack(tb, fr1, 0, 6, 3, 1);
@@ -831,7 +831,7 @@ Eina_Bool gl_state_get(const void *data, Evas_Object *obj, const char *part)
 
 void gl_del(const void *data, Evas_Object *obj)
 {
-	return 0;
+	return;
 }
 
 void create_gui(Evas_Object *win)
@@ -1112,7 +1112,7 @@ void create_cat_dialog(void *data, Evas_Object *obj, void *event_info)
 	evas_object_show(bg);
 
 	inwin = elm_win_inwin_add(cat_dialog);
-	elm_win_inwin_style_set(inwin, "minimal_vertical");
+	elm_object_style_set(inwin, "minimal_vertical");
 
 	//add vbox 
 	vbox = elm_box_add(cat_dialog);
@@ -1254,7 +1254,7 @@ void edit_cat(void)
 	
 	// add a frame
 	fr = elm_frame_add(cat_win);
-	elm_frame_style_set(fr, "outdent_top");
+	elm_object_style_set(fr, "outdent_top");
 	evas_object_size_hint_weight_set(fr, 0.0, 0.0);
 	evas_object_size_hint_align_set(fr, 0.0, -1.0);
 	elm_box_pack_end(hbox1, fr);
