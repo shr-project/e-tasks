@@ -305,7 +305,7 @@ void update_record(int rec_no)
 	
 	sql = sqlite3_mprintf("UPDATE tasks SET cb=%d, priority=%d, task='%q', date='%s', category='%s' WHERE key = %d;", Task[rec_no].cb,
 	                      Task[rec_no].pr, Task[rec_no].text, sql_date, Task[rec_no].cat, Task[rec_no].key);
-	printf("%s\n", sql);
+	//printf("%s\n", sql);
 	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
 	if (db_ret != SQLITE_OK) {
 	  if (err != NULL) {
@@ -323,7 +323,7 @@ void insert_record(int i)
 	
 	sql = sqlite3_mprintf("INSERT INTO tasks (cb, priority, task, date, category) VALUES(%d, %d, '%s', CURRENT_DATE, '%s');", 
 	                      	Task[i].cb, Task[i].pr, Task[i].text, Task[i].cat);
-	printf("%s\n", sql);
+	//printf("%s\n", sql);
 	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
 	if (db_ret != SQLITE_OK) {
 	  if (err != NULL) {
@@ -343,7 +343,7 @@ void del_record(int i)
 	char *err, *sql;
 	
 	sql = sqlite3_mprintf("DELETE FROM tasks WHERE key = %d;", i);
-	printf("%s\n", sql);
+	//printf("%s\n", sql);
 	db_ret = sqlite3_exec(tasks, sql, NULL, NULL, &err);
 	if (db_ret != SQLITE_OK) {
 	  if (err != NULL) {

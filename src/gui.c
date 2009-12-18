@@ -164,7 +164,7 @@ void task_cb_changed(void *data, Evas_Object *obj, void *event_info)
 	if(tsk->cb) tsk->cb = 0;
 	else tsk->cb =1;
 
-	printf("no %d key %d\n", tsk->no, tsk->key);
+	//printf("no %d key %d\n", tsk->no, tsk->key);
 	//TODO - strike through the task
 	//remove this task from the list
 	elm_genlist_item_del(task_list[tsk->no]);
@@ -1076,7 +1076,7 @@ void create_new_task(void *data, Evas_Object *obj, void *event_info)
 	last_rec = -1;
 	WRITE = 0;
 	//insert record
-	printf("total %d\n", i);
+	//printf("total %d\n", i);
 	insert_record(i);
 	elm_genlist_item_selected_set(task_list[i], 1);
 }
