@@ -1,10 +1,10 @@
 
 [Anjuta]
 Maximized=1
-Geometry=1680x994+0+24
+Geometry=1680x1002+0+24
 
 [File Loader]
-Files=file:///home/cc/workspace/e-tasks/src/gui.c#837%%%file:///home/cc/workspace/e-tasks/src/dbus-stuff.c#30
+Files=file:///home/cc/workspace/e-tasks/src/gui.c#55%%%file:///home/cc/workspace/e-tasks/src/dbus-stuff.c#30%%%file:///home/cc/workspace/e-tasks/src/db_sqlite.c#25
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
