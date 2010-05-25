@@ -46,7 +46,7 @@ my_win_del(void *data, Evas_Object *obj, void *event_info)
 EAPI int
 elm_main(int argc, char **argv)
 {
-	const char *theme;
+	//const char *theme;
 	
 	//int ret;
 
@@ -57,9 +57,9 @@ elm_main(int argc, char **argv)
 	//adjust finger size
 	elm_finger_size_set(55);
 
-	//paroli theme fix
-	theme = "tasks";
-	elm_theme_overlay_add(theme);
+	//paroli theme fix - not required anymore
+	//theme = "tasks";
+	//elm_theme_overlay_add(theme);
 		
 	//set up win
 	win = elm_win_add(NULL, "tasks", ELM_WIN_BASIC);
