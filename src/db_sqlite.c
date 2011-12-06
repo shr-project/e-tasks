@@ -118,7 +118,7 @@ void restore_state(void)
 	if (db_ret == SQLITE_ROW) sprintf(sel_category, "%s", sqlite3_column_text(stmt, 0));
 	sqlite3_finalize(stmt);
 	if(strcmp(sel_category, "")== 0) strcpy(sel_category, " All Tasks ");
-	elm_button_label_set(sel_cat_bt, sel_category);
+	elm_object_text_set(sel_cat_bt, sel_category);
 	load_data ();
 }
 
@@ -232,7 +232,7 @@ void add_hs_items(Evas_Object *win, Evas_Object *bx, Evas_Object *bt, int i)
 	if (i) {
 		sprintf(cate, " All Tasks ");
 		bt = elm_button_add(win);
-		elm_button_label_set(bt,cate);
+		elm_object_text_set(bt,cate);
 		elm_box_pack_end(bx, bt);
 		tystr = strdup(cate);
 		evas_object_smart_callback_add(bt, "clicked", select_category, (char *)tystr);
@@ -240,7 +240,7 @@ void add_hs_items(Evas_Object *win, Evas_Object *bx, Evas_Object *bt, int i)
 
 		sprintf(cate, "Deleted");
 		bt = elm_button_add(win);
-		elm_button_label_set(bt,cate);
+		elm_object_text_set(bt,cate);
 		elm_box_pack_end(bx, bt);
 		tystr = strdup(cate);
 		evas_object_smart_callback_add(bt, "clicked", select_category, (char *)tystr);
@@ -248,7 +248,7 @@ void add_hs_items(Evas_Object *win, Evas_Object *bx, Evas_Object *bt, int i)
 
 		sprintf(cate, "Edit Categories");
 		bt = elm_button_add(win);
-		elm_button_label_set(bt,cate);
+		elm_object_text_set(bt,cate);
 		elm_box_pack_end(bx, bt);
 		tystr = strdup(cate);
 		evas_object_smart_callback_add(bt, "clicked", select_category, (char *)tystr);
@@ -264,7 +264,7 @@ void add_hs_items(Evas_Object *win, Evas_Object *bx, Evas_Object *bt, int i)
 		sprintf(cate, "%s", sqlite3_column_text(stmt, 0));
 		if (i) {
 			bt = elm_button_add(win);
-			elm_button_label_set(bt,cate);
+			elm_object_text_set(bt,cate);
 			elm_box_pack_end(bx, bt);
 			tystr = strdup(cate);
 			evas_object_smart_callback_add(bt, "clicked", select_category, (char *)tystr);
@@ -272,7 +272,7 @@ void add_hs_items(Evas_Object *win, Evas_Object *bx, Evas_Object *bt, int i)
 		}
 		else {
 			bt = elm_button_add(win);
-			elm_button_label_set(bt, cate);
+			elm_object_text_set(bt, cate);
 			elm_box_pack_end(bx, bt);
 			tystr = strdup(cate);
 			evas_object_smart_callback_add(bt, "clicked", set_category, (char *)tystr);
