@@ -1230,7 +1230,7 @@ void edit_cat(void)
 
 	cat_win = elm_win_add(NULL, "cat", ELM_WIN_BASIC);
 	elm_win_title_set(cat_win, "Edit Categories");
-	evas_object_smart_callback_add(cat_win, "delete-request", cat_win_del, cat_win);
+	evas_object_smart_callback_add(cat_win, "delete,request", cat_win_del, cat_win);
 	
 	//add background
 	bg = elm_bg_add(cat_win);

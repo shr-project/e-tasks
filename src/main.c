@@ -64,7 +64,7 @@ elm_main(int argc, char **argv)
 	//set up win
 	win = elm_win_add(NULL, "tasks", ELM_WIN_BASIC);
 	elm_win_title_set(win, "Tasks");
-	evas_object_smart_callback_add(win, "delete-request", my_win_del, NULL);
+	evas_object_smart_callback_add(win, "delete,request", my_win_del, NULL);
 
 	//open database 
 	open_database();
