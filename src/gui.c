@@ -1067,7 +1067,7 @@ void create_new_task(void *data, Evas_Object *obj, void *event_info)
 	if(strcmp(sel_category, " All Tasks ")==0) strcpy(Task[i].cat, "Personal");
 	else strcpy(Task[i].cat, sel_category);
 	if(item) { 
-		task_list[i] = elm_genlist_item_insert_after(list, &itc1, &Task[i], item, ELM_GENLIST_ITEM_NONE,
+		task_list[i] = elm_genlist_item_insert_after(list, &itc1, &Task[i], NULL, item, ELM_GENLIST_ITEM_NONE,
 								  NULL, NULL);
 	}
 	//cater for no items in list
