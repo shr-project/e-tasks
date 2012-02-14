@@ -26,7 +26,7 @@ char dummy_cat[255];
 
 typedef struct _Details
 {
-	Elm_Genlist_Item *item;
+	Elm_Object_Item *item;
 	Evas_Object *button;
 	Evas_Object *hover;
 	char *data;
@@ -67,7 +67,7 @@ void select_category(void *data, Evas_Object *obj, void *event_info)
 {
 	char tystr[2];
 	char te_data[255], *task_entry;
-	Elm_Genlist_Item *item;
+	Elm_Object_Item *item;
 	_Task *tsk=NULL;
 
 	//for entries, get entry data and check agianst previous task text, date
@@ -89,7 +89,7 @@ void select_category(void *data, Evas_Object *obj, void *event_info)
 	}
 	
 	Evas_Object *li = data;
-	item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(li);
+	item = (Elm_Object_Item *)elm_genlist_selected_item_get(li);
 	tsk = (_Task *)elm_genlist_item_data_get(item);
 	last_rec = tsk->no;
 	elm_object_text_set(cat_bt, tsk->cat);
@@ -111,7 +111,7 @@ void set_priority(void *data, Evas_Object *obj, void *event_info)
 	sprintf(tystr, "%d", ty);
 	elm_object_text_set(pr_bt, tystr);
 	
-	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	Elm_Object_Item *item = (Elm_Object_Item *)elm_genlist_selected_item_get(list);
 	evas_object_hide(hv);
 	if (!item) {
 		dummy_pr = atoi(prio);
@@ -125,10 +125,10 @@ void set_priority(void *data, Evas_Object *obj, void *event_info)
 
 void set_category(void *data, Evas_Object *obj, void *event_info)
 {
-	Elm_Genlist_Item *item;
+	Elm_Object_Item *item;
 	//change category value of selected task
 	char *category = data;
-	item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	item = (Elm_Object_Item *)elm_genlist_selected_item_get(list);
 	evas_object_hide(hs);
 	if (!item) return;
 	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
@@ -146,7 +146,7 @@ void set_date(void *data, Evas_Object *obj, void *event_info)
 	//set the date
 	elm_object_text_set(date_bt, dt);
 	evas_object_hide(date_hs);
-	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	Elm_Object_Item *item = (Elm_Object_Item *)elm_genlist_selected_item_get(list);
 	if (!item) {
 		strcpy(dummy_date, dt);
 		return;
@@ -260,8 +260,8 @@ void det_page_done(void *data, Evas_Object *obj, void *event_info)
 	if(WRITE) {
 		WRITE = 0;
 		update_record (tsk->no);
-		Elm_Genlist_Item *item;
-		item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+		Elm_Object_Item *item;
+		item = (Elm_Object_Item *)elm_genlist_selected_item_get(list);
 		if(item) elm_genlist_item_update(task_list[tsk->no]);
 		last_rec = -1;
 		item = elm_genlist_first_item_get(list);
@@ -293,7 +293,7 @@ void create_details_page(void *data, Evas_Object *obj, void *event_info)
 	curtime = time (NULL);
 	
 	//check task selected - otherwise return
-	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	Elm_Object_Item *item = (Elm_Object_Item *)elm_genlist_selected_item_get(list);
 	if(!item) return;
 	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
 	det_page = elm_win_add(NULL, "inwin", ELM_WIN_BASIC);
@@ -566,7 +566,7 @@ void save_button_clicked(void *data, Evas_Object *obj, void *event_info)
 	char te_data[255], *task_entry;
 	
 	//get task no
-	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	Elm_Object_Item *item = (Elm_Object_Item *)elm_genlist_selected_item_get(list);
 	if (item) {
 		_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
 		
@@ -626,7 +626,7 @@ void note_done(void *data, Evas_Object *obj, void *event_info)
 	char tystr[255];
 	//Evas_Object *en = data;
 	
-	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	Elm_Object_Item *item = (Elm_Object_Item *)elm_genlist_selected_item_get(list);
 	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
 	sprintf(tystr, "%s", elm_entry_entry_get(data));
 	if (strcmp(tystr, "<br>") == 0) strcpy(tystr, "");
@@ -641,7 +641,7 @@ void note_button_clicked(void *data, Evas_Object *obj, void *event_info)
 	Evas_Object *bg, *bx, *bx2, *bt, *en;
 	//char buf[PATH_MAX];
 
-	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(list);
+	Elm_Object_Item *item = (Elm_Object_Item *)elm_genlist_selected_item_get(list);
 	if(!item) return;
 	_Task *tsk = (_Task *)elm_genlist_item_data_get(item);
 
@@ -1056,7 +1056,7 @@ void create_new_task(void *data, Evas_Object *obj, void *event_info)
 	
 	//get selected task if any
 	Evas_Object *li = data;
-	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(li);
+	Elm_Object_Item *item = (Elm_Object_Item *)elm_genlist_selected_item_get(li);
 	if (!item) item = elm_genlist_last_item_get(list);	//insert new line at end of list
 
 	Task[i].no = i;
@@ -1193,7 +1193,7 @@ void cat_list_selected(void *data, Evas_Object *obj, void *event_info)
 void  del_cat_button_clicked(void *data, Evas_Object *obj, void *event_info)
 {
 	Evas_Object *li = data;
-	Elm_Genlist_Item *item = (Elm_Genlist_Item *)elm_genlist_selected_item_get(li);
+	Elm_Object_Item *item = (Elm_Object_Item *)elm_genlist_selected_item_get(li);
 	char *_cat = (char *)elm_genlist_item_data_get(item);
 	//delete category from db
 	del_category(_cat);

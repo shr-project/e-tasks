@@ -192,7 +192,7 @@ void load_data(void)
 void show_cat_tasks(char *ca)
 {
 	int i;
-	Elm_Genlist_Item *item;
+	Elm_Object_Item *item;
 	
 	elm_genlist_clear(list);
 	if (strcmp(ca, " All Tasks ") == 0) {

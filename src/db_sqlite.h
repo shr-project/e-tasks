@@ -39,7 +39,7 @@ extern Evas_Object *list, *hs, *hs1, *cat_list, *sel_cat_bt;
 void restore_state(void);
 extern char home_dir[255], sel_category[255];
 extern Elm_Genlist_Item_Class itc1, itc2;
-extern Elm_Genlist_Item *task_list[500];
+extern Elm_Object_Item *task_list[500];
 extern int total_tasks;
 typedef struct{
 	int no;
