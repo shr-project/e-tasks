@@ -19,7 +19,7 @@
 
 void open_database(void)
 {
-	int db_ret, ret;
+	int db_ret;
 	char db[255];
 	
 	sprintf(db, "%s/.tasks/tasks.db", home_dir);
@@ -28,7 +28,7 @@ void open_database(void)
 		printf("SQL error: %s\n", sqlite3_errmsg(tasks));
 		printf("Creating new db file\n");
 		//exit(1);
-		ret = system("mkdir ~/.tasks");
+		system("mkdir ~/.tasks");
 		sqlite3_close(tasks);
 		db_ret = sqlite3_open(db, &tasks);
 	}
