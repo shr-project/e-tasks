@@ -728,7 +728,7 @@ void create_cat_hover(void)
 //for genlist
 Elm_Genlist_Item_Class itc1;
 
-char *gl_text_get(const void *data, Evas_Object *obj, const char *part)
+char *gl_text_get(void *data, Evas_Object *obj, const char *part)
 {
 	_Task *tsk = (_Task *)data;
 	char tystr[255], *ty;
@@ -739,7 +739,7 @@ char *gl_text_get(const void *data, Evas_Object *obj, const char *part)
 	//return NULL;
 }
 
-Evas_Object *gl_content_get(const void *data, Evas_Object *obj, const char *part)
+Evas_Object *gl_content_get(void *data, Evas_Object *obj, const char *part)
 {
 	_Task *tsk = (_Task *)data;
 	
@@ -824,12 +824,12 @@ Evas_Object *gl_content_get(const void *data, Evas_Object *obj, const char *part
 	return NULL;
 }
 
-Eina_Bool gl_state_get(const void *data, Evas_Object *obj, const char *part)
+Eina_Bool gl_state_get(void *data, Evas_Object *obj, const char *part)
 {
    return 0;
 }
 
-void gl_del(const void *data, Evas_Object *obj)
+void gl_del(void *data, Evas_Object *obj)
 {
 	return;
 }
@@ -1203,24 +1203,24 @@ void  del_cat_button_clicked(void *data, Evas_Object *obj, void *event_info)
 	if(strcmp(sel_category, _cat) == 0) select_category (" All Tasks ", NULL, NULL);
 }
 
-char *cat_text_get(const void *data, Evas_Object *obj, const char *part)
+char *cat_text_get(void *data, Evas_Object *obj, const char *part)
 {
 	char *_cat = (char *)data;
 	char *ty = strdup(_cat);
 	return (ty);
 }
 
-Evas_Object *cat_content_get(const void *data, Evas_Object *obj, const char *part)
+Evas_Object *cat_content_get(void *data, Evas_Object *obj, const char *part)
 {
 	return NULL;
 }
 
-Eina_Bool cat_state_get(const void *data, Evas_Object *obj, const char *part)
+Eina_Bool cat_state_get(void *data, Evas_Object *obj, const char *part)
 {
    return 0;
 }
 
-void cat_del (const void *data, Evas_Object *obj)
+void cat_del (void *data, Evas_Object *obj)
 {
 }
 
