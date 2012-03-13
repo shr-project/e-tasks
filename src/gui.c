@@ -788,7 +788,7 @@ Evas_Object *gl_content_get(void *data, Evas_Object *obj, const char *part)
 			ic= elm_icon_add(obj);
 			snprintf(buf, sizeof(buf), "/usr/share/e-tasks/note.png");
 			elm_icon_file_set(ic, buf, NULL);
-			elm_icon_scale_set(ic, 0, 0);
+			elm_icon_resizable_set(ic, 0, 0);
 			evas_object_show(ic);
 			elm_box_pack_end(bx, ic);
 		 }
@@ -805,7 +805,7 @@ Evas_Object *gl_content_get(void *data, Evas_Object *obj, const char *part)
 				ic= elm_icon_add(obj);
 				snprintf(buf, sizeof(buf), "/usr/share/e-tasks/exclaim.png");
 				elm_icon_file_set(ic, buf, NULL);
-				elm_icon_scale_set(ic, 0, 0);
+				elm_icon_resizable_set(ic, 0, 0);
 				evas_object_show(ic);
 				elm_box_pack_end(bx, ic);
 			}

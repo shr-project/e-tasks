@@ -55,7 +55,7 @@ elm_main(int argc, char **argv)
 	sprintf(home_dir, "%s", getenv(name));
 
 	//adjust finger size
-	elm_finger_size_set(55);
+	elm_config_finger_size_set(55);
 
 	//paroli theme fix - not required anymore
 	//theme = "tasks";
