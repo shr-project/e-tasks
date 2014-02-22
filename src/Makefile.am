@@ -8,6 +8,7 @@ AM_CPPFLAGS = \
 	$(TASKS_CFLAGS)
 
 AM_CFLAGS =\
+         $(EDBUS_CFLAGS) \
 	 -Wall\
 	 -g
 

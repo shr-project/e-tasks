@@ -15,7 +15,7 @@ AC_HEADER_STDC
 
 AM_PROG_LIBTOOL
 
-PKG_CHECK_MODULES(TASKS, [elementary eina dbus-1 sqlite3])
+PKG_CHECK_MODULES(TASKS, [elementary eina dbus-1 edbus sqlite3])
 
 AC_OUTPUT([
 Makefile
